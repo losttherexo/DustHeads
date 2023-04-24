@@ -2,10 +2,8 @@
 
 function App() {
   return (
-    <div>
-      <h1 className='flex justify-center font-bold text-3xl'>
-        Hello World
-      </h1>
+    <div className='flex justify-center text-6xl font-bold'>
+      <h1>Hello</h1>
     </div>
   );
 }
