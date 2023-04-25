@@ -6,6 +6,8 @@ from config import db
 class DustHead(db.Model, SerializerMixin):
     __tablename__ = 'dustheads'
 
+    serialize_rules = ('-copies', '-comments')
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     first_name = db.Column(db.String(32), nullable=False)
@@ -17,6 +19,8 @@ class DustHead(db.Model, SerializerMixin):
 
 class Record(db.Model, SerializerMixin):
     __tablename__ = 'records'
+
+    serialize_rules = ('-copies',)
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
@@ -30,6 +34,18 @@ class Record(db.Model, SerializerMixin):
 
 class Copy(db.Model, SerializerMixin):
     __tablename__ = 'copies'
+
+    serialize_rules = (
+        '-comments',
+        '-dusthead.first_name',
+        '-dusthead.last_name',
+        '-dusthead.id',
+        '-dusthead.bio',
+        '-record.genre',
+        '-record.year',
+        '-record.image',
+        '-record.id',
+    )
 
     id = db.Column(db.Integer, primary_key=True)
 
@@ -45,6 +61,14 @@ class Copy(db.Model, SerializerMixin):
 
 class Comment(db.Model, SerializerMixin):
     __tablename__ = 'comments'
+
+    serialize_rules = (
+        '-copy',
+        '-dusthead.bio',
+        '-dusthead.first_name',
+        '-dusthead.last_name',
+        '-dusthead.id'
+    )
 
     id = db.Column(db.Integer, primary_key=True)
     
