@@ -39,6 +39,34 @@ class DustHeads(Resource):
         response = make_response(new_dh.to_dict(), 201)
         return response
     
+class DustHeadsByID(Resource):
+    def get(self, id):
+        dh = DustHead.query.filter_by(id=id).first()
+        if dh == None:
+            return make_response({'error': '404: DustHead not found'}, 404)
+        response = make_response(dh.to_dict(), 200)
+        return response
+    
+    def patch(self, id):
+        dh = DustHead.query.filter_by(id=id).first()
+        if dh == None:
+            return make_response({'error': '404: DustHead not found'}, 404)
+
+        data = request.get_json()
+        for key in data.keys():
+            setattr(dh, key , data[key])
+        db.session.add(dh)
+        db.session.commit()
+        return make_response(dh.to_dict(), 200)
+    
+    def delete(self, id):
+        dh = DustHead.query.filter_by(id=id).first()
+        if dh == None:
+            return make_response({'error': '404: DustHead not found'}, 404)
+        db.session.delete(dh)
+        db.session.commit()
+        return make_response('DustHead has been deleted!', 204)
+    
 class Records(Resource):
     def get(self):
         records = [r.to_dict() for r in Record.query.all()]
@@ -81,6 +109,7 @@ class Comments(Resource):
 
 api.add_resource(Home, '/')
 api.add_resource(DustHeads, '/dustheads')
+api.add_resource(DustHeadsByID, '/dustheads/<int:id>')
 api.add_resource(Records, '/records')
 api.add_resource(Copies, '/copies')
 api.add_resource(Comments, '/comments')
