@@ -47,6 +47,7 @@ class Comment(db.Model, SerializerMixin):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
+    
     body = db.Column(db.String(280), nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
