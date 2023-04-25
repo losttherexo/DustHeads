@@ -54,7 +54,7 @@ class DustHeadsByID(Resource):
 
         data = request.get_json()
         for key in data.keys():
-            setattr(dh, key , data[key])
+            setattr(dh, key, data[key])
         db.session.add(dh)
         db.session.commit()
         return make_response(dh.to_dict(), 200)
@@ -92,6 +92,34 @@ class Records(Resource):
             
         response = make_response(new_record.to_dict(), 201)
         return response
+
+class RecordsByID(Resource):
+    def get(self, id):
+        record = Record.query.filter_by(id=id).first()
+        if record == None:
+            return make_response({'error': '404: Record not found'}, 404)
+        response = make_response(record.to_dict(), 200)
+        return response
+    
+    def patch(self, id):
+        record = Record.query.filter_by(id=id).first()
+        if record == None:
+            return make_response({'error': '404: Record not found'}, 404)
+
+        data = request.get_json()
+        for key in data.keys():
+            setattr(record, key, data[key])
+        db.session.add(record)
+        db.session.commit()
+        return make_response(record.to_dict(), 200)
+    
+    def delete(self, id):
+        record = Record.query.filter_by(id=id).first()
+        if record == None:
+            return make_response({'error': '404: Record not found'}, 404)
+        db.session.delete(record)
+        db.session.commit()
+        return make_response('DustHead has been deleted!', 204)
     
 class Copies(Resource):
     def get(self):
@@ -100,19 +128,78 @@ class Copies(Resource):
         response = make_response(copies, 200)
         return response
     
+class CopiesByID(Resource):
+    def get(self, id):
+        copy = Copy.query.filter_by(id=id).first()
+        if copy == None:
+            return make_response({'error': '404: Record not found'}, 404)
+        response = make_response(copy.to_dict(), 200)
+        return response
+    
+    def patch(self, id):
+        copy = Copy.query.filter_by(id=id).first()
+        if copy == None:
+            return make_response({'error': '404: Record not found'}, 404)
+
+        data = request.get_json()
+        for key in data.keys():
+            setattr(copy, key, data[key])
+        db.session.add(copy)
+        db.session.commit()
+        return make_response(copy.to_dict(), 200)
+    
+    def delete(self, id):
+        copy = Copy.query.filter_by(id=id).first()
+        if copy == None:
+            return make_response({'error': '404: Record not found'}, 404)
+        db.session.delete(copy)
+        db.session.commit()
+        return make_response('DustHead has been deleted!', 204)
+    
 class Comments(Resource):
     def get(self):
         comments = [c.to_dict() for c in Comment.query.all()]
 
         response = make_response(comments, 200)
         return response
+    
+class CommentsByID(Resource):
+    def get(self, id):
+        comment = Comment.query.filter_by(id=id).first()
+        if comment == None:
+            return make_response({'error': '404: Record not found'}, 404)
+        response = make_response(comment.to_dict(), 200)
+        return response
+    
+    def patch(self, id):
+        comment = Comment.query.filter_by(id=id).first()
+        if comment == None:
+            return make_response({'error': '404: Record not found'}, 404)
+
+        data = request.get_json()
+        for key in data.keys():
+            setattr(comment, key, data[key])
+        db.session.add(comment)
+        db.session.commit()
+        return make_response(comment.to_dict(), 200)
+    
+    def delete(self, id):
+        comment = Comment.query.filter_by(id=id).first()
+        if comment == None:
+            return make_response({'error': '404: Record not found'}, 404)
+        db.session.delete(comment)
+        db.session.commit()
+        return make_response('DustHead has been deleted!', 204)
 
 api.add_resource(Home, '/')
 api.add_resource(DustHeads, '/dustheads')
 api.add_resource(DustHeadsByID, '/dustheads/<int:id>')
 api.add_resource(Records, '/records')
+api.add_resource(RecordsByID, '/records/<int:id>')
 api.add_resource(Copies, '/copies')
+api.add_resource(CopiesByID, '/copies/<int:id>')
 api.add_resource(Comments, '/comments')
+api.add_resource(CommentsByID, '/comments/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
