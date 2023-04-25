@@ -3,35 +3,47 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
 from config import db
 
-class DustHead(db.Model):
+class DustHead(db.Model, SerializerMixin):
+    __tablename__ = 'dustheads'
+
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
-    reviews = db.relationship('Review', backref='author', lazy='dynamic')
+    username = db.Column(db.String(64), index=True, unique=True, nullable=False)
+    email = db.Column(db.String(120), index=True, unique=True, nullable=False)
 
-    def __repr__(self):
-        return '<DustHead {}>'.format(self.username)
+    comments = db.relationship('Comment', backref='dusthead', lazy=True)
+    likes = db.relationship('Like', backref='dusthead', lazy=True)
 
+class Record(db.Model, SerializerMixin):
+    __tablename__ = 'records'
 
-class Record(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(140), index=True)
-    artist = db.Column(db.String(140), index=True)
-    genre = db.Column(db.String(140), index=True)
-    year = db.Column(db.Integer)
-    reviews = db.relationship('Review', backref='record', lazy='dynamic')
+    title = db.Column(db.String(255), nullable=False)
+    genre = db.Column(db.String(64), nullable=False)
+    image = db.Column(db.String)
 
-    def __repr__(self):
-        return '<Record {}>'.format(self.name)
+    copies = db.relationship('Copy', backref='record', lazy=True)
 
 
-class Review(db.Model):
+
+class Copy(db.Model, SerializerMixin):
+    __tablename__ = 'copies'
+
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
+
+    record_id = db.Column(db.Integer, db.ForeignKey('records.id'), nullable=False)
+    dusthead_id = db.Column(db.Integer, db.ForeignKey('dustheads.id'), nullable=False)
+    image = db.Column(db.String)
+
+    comments = db.relationship('Comment', backref='copy', lazy=True)
+
+
+
+class Comment(db.Model, SerializerMixin):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(140), nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    dusthead_id = db.Column(db.Integer, db.ForeignKey('dust_head.id'))
-    record_id = db.Column(db.Integer, db.ForeignKey('record.id'))
 
-    def __repr__(self):
-        return '<Review {}>'.format(self.body)
+    dusthead_id = db.Column(db.Integer, db.ForeignKey('dustheads.id'), nullable=False)
+    copy_id = db.Column(db.Integer, db.ForeignKey('copies.id'), nullable=False)
