@@ -1,10 +1,17 @@
-import { Route, Switch, Link } from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
+import Landing from './components/Landing';
+import Home from './components/Home';
+import DustHead from './components/DustHead';
+import Records from './components/Records';
 
 function App() {
   return (
-    <div className='flex justify-center text-6xl font-bold'>
-      <h1>Hello</h1>
-    </div>
+    <Routes>
+      <Route path='/' element={<Landing/>}/>
+      <Route path='/home' element={<Home/>}/>
+      <Route path='/dusthead' element={<DustHead/>}/>
+      <Route path='/records' element={<Records/>}/>
+    </Routes>
   );
 }
 
