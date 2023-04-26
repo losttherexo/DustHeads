@@ -1,9 +1,14 @@
+import NavBar from "./NavBar"
+
 function Records() {
 
     return(
-        <h1>
-            the best records alive
-        </h1>
+        <div>
+            <NavBar/>
+            <h1>
+                the best records alive
+            </h1>
+        </div>
     )
 }
 

@@ -1,9 +1,14 @@
+import NavBar from "./NavBar"
+
 function DustHead() {
 
     return(
-        <h1>
-            this is ur crate
-        </h1>
+        <div>
+            <NavBar/>
+            <h1>
+                this is ur crate
+            </h1>
+        </div>
     )
 }
 
