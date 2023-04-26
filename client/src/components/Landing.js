@@ -8,7 +8,7 @@ function Landing() {
           <img src={Dusty} alt='Dusty'/>
         </div>
         <div className='text-center'>
-          <h1 className='text-6xl font-bold mb-8'>
+          <h1 className='text-5xl md:text-[80px] font-bold mb-8'>
             DUSTHEADS
           </h1>
           <form className='flex flex-col items-center'>
