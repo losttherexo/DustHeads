@@ -9,13 +9,13 @@ import Records from './components/Records';
 function App() {
 
 
-  const [records, setRecords] = useState([])
+  // const [records, setRecords] = useState([])
 
-  useEffect(() => {
-    fetch('http://localhost:5555/records')
-        .then(r => r.json())
-        .then(setRecords)
-  },[])
+  // useEffect(() => {
+  //   fetch('http://localhost:5555/records')
+  //       .then(r => r.json())
+  //       .then(setRecords)
+  // },[])
 
 
   return (
@@ -23,7 +23,7 @@ function App() {
       <Route path='/' element={<Landing/>}/>
       <Route path='/home' element={<Home/>}/>
       <Route path='/dusthead' element={<DustHead/>}/>
-      <Route path='/records' element={<Records records={records}/>}/>
+      <Route path='/records' element={<Records/>}/>
     </Routes>
   );
 }

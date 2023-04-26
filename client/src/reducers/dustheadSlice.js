@@ -1,4 +1,4 @@
-const initialState = 'YUH'
+const initialState = []
 
 export const dustheadReducer = (state = initialState, action) => {
 
