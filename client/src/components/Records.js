@@ -7,15 +7,24 @@ import RecordCard from "./RecordCard";
 function Records() {
     const dispatch = useDispatch()
     const [newRecord, setNewRecord] = useState('')
-
+    
     useEffect(() => {
-      dispatch(fetchRecords())
+        dispatch(fetchRecords())
     }, [])
-  
+    
     const records = useSelector(state => {
         return state.records
     })
-  
+
+    const recordCards = records.map(
+        r => <RecordCard 
+            key={r.id}
+            image={r.image} 
+            artist={r.artist} 
+            title={r.title} 
+        />
+    )
+    
     const handleChange = e => {
       setNewRecord(e.target.value)
     }
@@ -24,15 +33,12 @@ function Records() {
       dispatch(addRecord({title: newRecord}))
     }
 
-    const recordComponents = records.map(r => <RecordCard key={r.id} image={r.image} artist={r.artist} title={r.title} />)
-    
-
     return(
         <div>
             <NavBar/>
             <h1 className='py-12 text-6xl font-bold text-center text-gray-300'>What's Poppin?</h1>
             <div className='flex flex-col md:flex-row justify-center mx-6'>
-                {recordComponents}
+                {recordCards}
             </div>
         </div>
     )
