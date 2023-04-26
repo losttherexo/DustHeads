@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import {Routes, Route} from 'react-router-dom';
 import Landing from './components/Landing';
 import Home from './components/Home';
@@ -7,16 +6,6 @@ import Records from './components/Records';
 
 
 function App() {
-
-
-  // const [records, setRecords] = useState([])
-
-  // useEffect(() => {
-  //   fetch('http://localhost:5555/records')
-  //       .then(r => r.json())
-  //       .then(setRecords)
-  // },[])
-
 
   return (
     <Routes>

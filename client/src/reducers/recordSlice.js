@@ -1,5 +1,19 @@
 const initialState = []
 
+export const addRecord = newRecordObj => {
+    return {type:'records/add', payload:newRecordObj}
+}
+
+export const fetchRecords = () => {
+    return function(dispatch){
+        fetch('http://localhost:5555/records')
+        .then(r => r.json())
+        .then(recordsArray => {
+            dispatch({type:'records/set', payload: recordsArray})
+        })
+    }
+}
+
 export const recordsReducer = (state = initialState, action) => {
     switch(action.type){
         case 'records/set':
