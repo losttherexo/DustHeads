@@ -1,7 +1,10 @@
 import Dusty from '../img/Dusty.png'
 import Vinyl from '../img/Vinyl.png'
+import {useSelector} from 'react-redux';
 
 function Landing() {
+  const yuh = useSelector(s => {return s})
+
   return (
     <div className='flex flex-col md:flex-row h-screen items-center text-gray-300'>
         <div className=''>
@@ -9,7 +12,7 @@ function Landing() {
         </div>
         <div className='text-center'>
           <h1 className='text-5xl md:text-[80px] font-bold mb-8'>
-            DUSTHEADS
+            DUSTHEADS {yuh}
           </h1>
           <form className='flex flex-col items-center'>
             <label htmlFor='username' className='block mb-2 font-medium'>Username</label>
