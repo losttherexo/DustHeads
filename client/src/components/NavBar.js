@@ -1,7 +1,7 @@
 function NavBar(){
 
     return(
-        <div className='bg-[#615175] py-6'>
+        <div className='border-b mx-6 py-6 text-gray-300'>
             yurrrrr
         </div>
     )
