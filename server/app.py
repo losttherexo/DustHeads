@@ -3,11 +3,11 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response, session
+from flask import request, make_response, session, jsonify
 from flask_restful import Resource
 
 # Local imports
-from config import app, db, api
+from config import app, db, api, bcrypt
 from models import DustHead, Record, Copy, Comment
 
 # Views go here!
@@ -17,57 +17,71 @@ class Home(Resource):
     
 class SignUp(Resource):
     def post(self):
-        email = request.json['email']
-        password = request.json['password']
-        password_confirmation = request.json['password_confirmation']
-        firstname = request.json['first_name']
-        lastname = request.json['last_name']
-        dob = request.json['dob']
+        data = request.get_json()
+        username = data['username']        
+        email = data['email']
+        password = data['password']
 
-        user_exists = Fan.query.filter(Fan.email == email).first() is not None
+        dh_exists = DustHead.query.filter(DustHead.username == username).first() is not None
 
-        if user_exists:
-            return jsonify({"error": "User already exists"}), 409
+        if dh_exists:
+            response = make_response({"error": "User already exists"}, 409)
+            return response
 
-        hashed_password = bcrypt.generate_password_hash(password)
-        hashed_password_confirmation = bcrypt.generate_password_hash(password_confirmation)
-        new_fan = Fan(
-            email=email,
-            _password_hash=hashed_password,
-            password_confirmation = hashed_password_confirmation,
-            first_name=firstname,
-            last_name=lastname,
-            dob=dob
+        new_dh = DustHead(
+            username = username,
+            email = email,
+            _password_hash = password
         )
-        db.session.add(new_fan)
-        db.session.commit()
-        return jsonify({
-            "id": new_fan.id,
-            "email": new_fan.email
-        })
-    
+
+        new_dh.password_hash = password
+
+        try:
+            db.session.add(new_dh)
+            db.session.commit()
+            session['dh_id'] = new_dh.id
+            response = make_response(new_dh.to_dict(), 201)
+            return response
+        except ValueError:
+            db.session.rollback()
+            response = make_response({'error': '400: Validation error.'}, 400)
+            return response
+        
 class Login(Resource):
     def post(self):
-        username = request.get_json().get('username')
+        data = request.get_json()
+        username = data['username']
+        password = data['password']
+
         dh = DustHead.query.filter(DustHead.username == username).first()
 
-        session['dh_id'] = dh.id
-        return dh.to_dict()
+        if dh:
+            if dh.authenticate(password):
+                session['dh_id'] = dh.id
+                response = make_response(dh.to_dict(), 200)
+                return response
+            
+        response = make_response({'error': '401: Not Authorized'}, 401)
+        return response
     
 class Logout(Resource):
     def delete(self):
-        session['dh_id'] = None
-        return {'message' : '204: No Content'}, 204
-
+        if session.get('dh_id'):
+            session['dh_id'] = None
+            response = make_response({'message' : '204: No Content'}, 204)
+            return response
+        
 class CheckSession(Resource):
     def get(self):
         dh_id = session['dh_id']
-        dh = DustHead.query.filter(DustHead.id == dh_id).first()
-        if dh:
-            return dh.to_dict(), 200
+        if dh_id:
+            dh = DustHead.query.filter(DustHead.id == dh_id).first()
+            response = make_response(dh.to_dict(), 200)
+            return response
         else:
-            return {'message': '401:Not Authorized'}, 401
-            
+            response = make_response({'message': '401: Not Authorized'}, 401)
+            return response
+        
 class DustHeads(Resource):
     def get(self):
         dustheads = [dh.to_dict() for dh in DustHead.query.all()]
@@ -87,7 +101,8 @@ class DustHeads(Resource):
             db.session.commit()
         except ValueError:
             db.session.rollback()
-            return make_response({'error': '400: Validation error.'}, 400)
+            response = make_response({'error': '400: Validation error.'}, 400)
+            return response
             
         response = make_response(new_dh.to_dict(), 201)
         return response
@@ -97,6 +112,7 @@ class DustHeadsByID(Resource):
         dh = DustHead.query.filter_by(id=id).first()
         if dh == None:
             return make_response({'error': '404: DustHead not found'}, 404)
+        
         response = make_response(dh.to_dict(), 200)
         return response
     

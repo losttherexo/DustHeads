@@ -12,7 +12,6 @@ class DustHead(db.Model, SerializerMixin):
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String, nullable=False)
-    password_confirmation = db.Column(db.String, nullable=False)
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))
     bio = db.Column(db.String(280))
@@ -26,7 +25,6 @@ class DustHead(db.Model, SerializerMixin):
     
     @password_hash.setter
     def password_hash(self, password):
-        # utf-8 encoding and decoding is required in python 3
         password_hash = bcrypt.generate_password_hash(
             password.encode('utf-8'))
         self._password_hash = password_hash.decode('utf-8')
@@ -34,6 +32,7 @@ class DustHead(db.Model, SerializerMixin):
     def authenticate(self, password):
         return bcrypt.check_password_hash(
             self._password_hash, password.encode('utf-8'))
+
 
 class Record(db.Model, SerializerMixin):
     __tablename__ = 'records'

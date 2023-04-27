@@ -1,8 +1,8 @@
-"""tables created
+"""no password conf
 
-Revision ID: 20c110e7dc9e
+Revision ID: b47563706a03
 Revises: 
-Create Date: 2023-04-25 15:54:25.288320
+Create Date: 2023-04-27 11:22:37.496848
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '20c110e7dc9e'
+revision = 'b47563706a03'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,10 +21,13 @@ def upgrade():
     op.create_table('dustheads',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=64), nullable=False),
-    sa.Column('first_name', sa.String(length=32), nullable=False),
+    sa.Column('email', sa.String(), nullable=False),
+    sa.Column('_password_hash', sa.String(), nullable=False),
+    sa.Column('first_name', sa.String(length=32), nullable=True),
     sa.Column('last_name', sa.String(length=32), nullable=True),
     sa.Column('bio', sa.String(length=280), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('email')
     )
     with op.batch_alter_table('dustheads', schema=None) as batch_op:
         batch_op.create_index(batch_op.f('ix_dustheads_username'), ['username'], unique=True)

@@ -63,7 +63,7 @@ function Landing() {
         </div>
         {isOpen && (
           <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center text-black">
-            <form onSubmit={formik.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-16 text-center'>
+            <form onSubmit={formik.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-20 text-center'>
               <label htmlFor='username' className='block mb-1 font-medium'>Username</label>
               <input type='text' id='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
               <label htmlFor='email' className='block mb-1 font-medium'>Username</label>
