@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response
+from flask import request, make_response, session
 from flask_restful import Resource
 
 # Local imports
@@ -32,6 +32,7 @@ class DustHeads(Resource):
         try:
             db.session.add(new_dh)
             db.session.commit()
+            session['dh_id'] = new_dh.id
         except ValueError:
             db.session.rollback()
             return make_response({'error': '400: Validation error.'}, 400)

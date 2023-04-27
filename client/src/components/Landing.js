@@ -56,19 +56,26 @@ function Landing() {
             </button>
           </form>
           <p className='pt-2'>Don't have an account?</p>
-          <button onClick={toggleModal} className='font-bold'>Sign up</button>
+          <button onClick={toggleModal} className='font-bold'>Sign Up</button>
         </div>
         <div className='max-w-[60%] md:max-w[70%] lg:max-w[100%]'>
           <img src={Vinyl} alt='Vinyl'/>
         </div>
         {isOpen && (
-                <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white rounded shadow p-4 text-center">
-                        <h2>Stop Right There!!!</h2>
-                        <p className='mb-2'>You are an impostor and clearly not a lil stinker.</p>
-                        <button onClick={toggleModal} className="hover:bg-slate-900 hover:text-white border shadow font-bold px-4 rounded">Try Again</button>
-                    </div>
-                </div>
+          <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center text-black">
+            <form onSubmit={formik.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-16 text-center'>
+              <label htmlFor='username' className='block mb-1 font-medium'>Username</label>
+              <input type='text' id='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
+              <label htmlFor='email' className='block mb-1 font-medium'>Username</label>
+              <input type='text' id='email' value={formik.values.email} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
+              <label htmlFor='password' className='block mb-1 font-medium'>Password</label>
+              <input type='password' id='password' className='w-2/3 p-1 border border-gray-400 rounded-md mb-2 text-gray-800' />
+              <button type='submit' className='w-2/3 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
+                Sign Up
+              </button>
+              <button onClick={toggleModal}>get me outta here</button>
+            </form>      
+          </div>
             )}
     </div>
   );
