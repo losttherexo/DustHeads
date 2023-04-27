@@ -1,10 +1,10 @@
 import NavBar from "./NavBar"
 
-function Home(){
+function Home({updateUser}){
 
     return(
         <div>
-            <NavBar/>
+            <NavBar updateUser={updateUser}/>
             <div className='flex flex-col sm:flex-row justify-center h-screen'>
                 <div className='mx-6'>
                     hello
