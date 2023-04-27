@@ -25,7 +25,7 @@ function Landing({updateUser}) {
     },
     validationSchema:formSchema,
     onSubmit:(values) => {
-      console.log(values)
+      // console.log(values)
       fetch(isOpen? '/dustheads':'/login', {
         method:'POST',
         headers:{'Content-Type':'application/json'},

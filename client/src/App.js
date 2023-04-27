@@ -1,5 +1,5 @@
 import {Routes, Route} from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Landing from './components/Landing';
 import Home from './components/Home';
 import DustHead from './components/DustHead';
@@ -10,11 +10,25 @@ function App() {
   const [user, setUser] = useState(null)
   const updateUser = (user) => setUser(user)
 
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
+  const fetchUser = () => {
+    fetch('/session')
+    .then(r => {
+      if(r.ok){
+        r.json().then(user => setUser(user))
+      }else {
+        setUser(null)
+      }
+    })
+  }
 
   if(!user) return(
     <Landing updateUser={updateUser}/>
   )
-  
+
   return (
     <Routes>
       <Route path='/' element={<Landing updateUser={updateUser}/>}/>

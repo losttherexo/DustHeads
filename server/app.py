@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import request, make_response, session, jsonify
+from flask import request, make_response, session, abort
 from flask_restful import Resource
 
 # Local imports
@@ -73,14 +73,12 @@ class Logout(Resource):
         
 class CheckSession(Resource):
     def get(self):
-        dh_id = session['dh_id']
-        if dh_id:
-            dh = DustHead.query.filter(DustHead.id == dh_id).first()
+        dh = DustHead.query.filter_by(id = session.get('dh_id')).first()
+        if dh:
             response = make_response(dh.to_dict(), 200)
             return response
         else:
-            response = make_response({'message': '401: Not Authorized'}, 401)
-            return response
+            abort(401, "Not Authorized")
         
 class DustHeads(Resource):
     def get(self):
@@ -263,7 +261,7 @@ class CommentsByID(Resource):
 api.add_resource(Home, '/')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
-api.add_resource(CheckSession, '/check_session')
+api.add_resource(CheckSession, '/session')
 api.add_resource(DustHeads, '/dustheads')
 api.add_resource(DustHeadsByID, '/dustheads/<int:id>')
 api.add_resource(Records, '/records')
