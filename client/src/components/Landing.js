@@ -37,7 +37,6 @@ function Landing({updateUser}) {
     }
   })
 
-
   return (
     <div className='flex flex-col md:flex-row h-screen items-center text-gray-300'>
         <div className='max-w-[60%] md:max-w[70%] lg:max-w[100%]'>
