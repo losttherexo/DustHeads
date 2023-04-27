@@ -10,6 +10,11 @@ function App() {
   const [user, setUser] = useState(null)
   const updateUser = (user) => setUser(user)
 
+
+  if(!user) return(
+    <Landing updateUser={updateUser}/>
+  )
+  
   return (
     <Routes>
       <Route path='/' element={<Landing updateUser={updateUser}/>}/>
