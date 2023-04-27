@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Dusty from '../img/Dusty.png'
 import Vinyl from '../img/Vinyl.png'
 
-function Landing({updateUser, handleNav}) {
+function Landing({updateUser}) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
 
@@ -33,7 +33,6 @@ function Landing({updateUser, handleNav}) {
       })
       .then(r => r.json())
       .then(user => updateUser(user))
-      handleNav()
       navigate('/home')
     }
   })
