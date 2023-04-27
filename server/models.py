@@ -1,7 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
-from config import db
+from config import db, bcrypt
 
 class DustHead(db.Model, SerializerMixin):
     __tablename__ = 'dustheads'
@@ -10,12 +10,30 @@ class DustHead(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
-    first_name = db.Column(db.String(32), nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    _password_hash = db.Column(db.String, nullable=False)
+    password_confirmation = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))
     bio = db.Column(db.String(280))
 
     copies = db.relationship('Copy', backref='dusthead', lazy=True)
     comments = db.relationship('Comment', backref='dusthead', lazy=True)
+
+    @hybrid_property
+    def password_hash(self):
+        raise AttributeError('Password hashes may not be viewed.')
+    
+    @password_hash.setter
+    def password_hash(self, password):
+        # utf-8 encoding and decoding is required in python 3
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8'))
+        self._password_hash = password_hash.decode('utf-8')
+
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(
+            self._password_hash, password.encode('utf-8'))
 
 class Record(db.Model, SerializerMixin):
     __tablename__ = 'records'

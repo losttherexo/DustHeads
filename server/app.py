@@ -15,6 +15,59 @@ class Home(Resource):
     def get(self):
         return 'Welcome to the land where vinyl reigns supreme. All hail the dustheads!'
     
+class SignUp(Resource):
+    def post(self):
+        email = request.json['email']
+        password = request.json['password']
+        password_confirmation = request.json['password_confirmation']
+        firstname = request.json['first_name']
+        lastname = request.json['last_name']
+        dob = request.json['dob']
+
+        user_exists = Fan.query.filter(Fan.email == email).first() is not None
+
+        if user_exists:
+            return jsonify({"error": "User already exists"}), 409
+
+        hashed_password = bcrypt.generate_password_hash(password)
+        hashed_password_confirmation = bcrypt.generate_password_hash(password_confirmation)
+        new_fan = Fan(
+            email=email,
+            _password_hash=hashed_password,
+            password_confirmation = hashed_password_confirmation,
+            first_name=firstname,
+            last_name=lastname,
+            dob=dob
+        )
+        db.session.add(new_fan)
+        db.session.commit()
+        return jsonify({
+            "id": new_fan.id,
+            "email": new_fan.email
+        })
+    
+class Login(Resource):
+    def post(self):
+        username = request.get_json().get('username')
+        dh = DustHead.query.filter(DustHead.username == username).first()
+
+        session['dh_id'] = dh.id
+        return dh.to_dict()
+    
+class Logout(Resource):
+    def delete(self):
+        session['dh_id'] = None
+        return {'message' : '204: No Content'}, 204
+
+class CheckSession(Resource):
+    def get(self):
+        dh_id = session['dh_id']
+        dh = DustHead.query.filter(DustHead.id == dh_id).first()
+        if dh:
+            return dh.to_dict(), 200
+        else:
+            return {'message': '401:Not Authorized'}, 401
+            
 class DustHeads(Resource):
     def get(self):
         dustheads = [dh.to_dict() for dh in DustHead.query.all()]
@@ -32,7 +85,6 @@ class DustHeads(Resource):
         try:
             db.session.add(new_dh)
             db.session.commit()
-            session['dh_id'] = new_dh.id
         except ValueError:
             db.session.rollback()
             return make_response({'error': '400: Validation error.'}, 400)
@@ -193,6 +245,9 @@ class CommentsByID(Resource):
         return make_response('DustHead has been deleted!', 204)
 
 api.add_resource(Home, '/')
+api.add_resource(Login, '/login')
+api.add_resource(Logout, '/logout')
+api.add_resource(CheckSession, '/check_session')
 api.add_resource(DustHeads, '/dustheads')
 api.add_resource(DustHeadsByID, '/dustheads/<int:id>')
 api.add_resource(Records, '/records')

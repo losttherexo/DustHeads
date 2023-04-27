@@ -4,7 +4,7 @@ export const addDustHead = newDustHeadObj => {
     return {type:'dustheads/add', payload:newDustHeadObj}
 }
 
-export const fetchRecords = () => {
+export const fetchDustHeads = () => {
     return function(dispatch){
         fetch('/dustheads')
         .then(r => r.json())
