@@ -4,10 +4,12 @@ import Landing from './components/Landing';
 import Home from './components/Home';
 import DustHead from './components/DustHead';
 import Records from './components/Records';
+import NavBar from './components/NavBar';
 
 
 function App() {
   const [user, setUser] = useState(null)
+  const [isNav, setIsNav] = useState(false)
   const updateUser = (user) => setUser(user)
 
   useEffect(() => {
@@ -25,17 +27,24 @@ function App() {
     })
   }
 
-  if(!user) return(
-    <Landing updateUser={updateUser}/>
-  )
+  const handleNav = () => {
+    setIsNav(!isNav)
+  }
+
+  // if(!user) return(
+  //   <Landing updateUser={updateUser}/>
+  // )
 
   return (
+    <>
+    {isNav? <NavBar updateUser={updateUser} handleNav={handleNav}/> : null}
     <Routes>
-      <Route path='/' element={<Landing updateUser={updateUser}/>}/>
+      <Route path='/' element={<Landing updateUser={updateUser} handleNav={handleNav}/>}/>
       <Route path='/home' element={<Home updateUser={updateUser}/>}/>
       <Route path='/dusthead' element={<DustHead/>}/>
       <Route path='/records' element={<Records/>}/>
     </Routes>
+    </>
   );
 }
 

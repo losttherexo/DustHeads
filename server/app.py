@@ -53,7 +53,7 @@ class Login(Resource):
         username = data['username']
         # password = data['password']
 
-        dh = DustHead.query.filter(DustHead.username == username).first()
+        dh = DustHead.query.filter_by(username = username).first()
 
         if dh:
             # if dh.authenticate(password):

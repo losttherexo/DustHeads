@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function NavBar({updateUser}){
+function NavBar({updateUser, handleNav}){
     const navigate = useNavigate()
     const handleLogout = () => {
         fetch('/logout',{
@@ -9,6 +9,7 @@ function NavBar({updateUser}){
         .then(r => {
             if(r.ok){
                 updateUser(null)
+                handleNav()
                 navigate('/')
             }
         }) 

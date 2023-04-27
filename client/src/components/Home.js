@@ -1,10 +1,9 @@
-import NavBar from "./NavBar"
+
 
 function Home({updateUser}){
 
     return(
         <div>
-            <NavBar updateUser={updateUser}/>
             <div className='flex flex-col sm:flex-row justify-center h-screen'>
                 <div className='mx-6'>
                     hello
