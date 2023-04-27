@@ -6,7 +6,7 @@ export const addRecord = newRecordObj => {
 
 export const fetchRecords = () => {
     return function(dispatch){
-        fetch('http://localhost:5555/records')
+        fetch('/records')
         .then(r => r.json())
         .then(recordsArray => {
             dispatch({type:'records/set', payload: recordsArray})

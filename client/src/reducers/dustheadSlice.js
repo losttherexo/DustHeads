@@ -6,7 +6,7 @@ export const addDustHead = newDustHeadObj => {
 
 export const fetchRecords = () => {
     return function(dispatch){
-        fetch('http://localhost:5555/dustheads')
+        fetch('/dustheads')
         .then(r => r.json())
         .then(dhArray => {
             dispatch({type:'dustheads/set', payload: dhArray})
