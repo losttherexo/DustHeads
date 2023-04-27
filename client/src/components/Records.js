@@ -10,7 +10,7 @@ function Records() {
     
     useEffect(() => {
         dispatch(fetchRecords())
-    }, [])
+    }, [dispatch])
     
     const records = useSelector(state => {
         return state.records

@@ -5,11 +5,11 @@ function Landing() {
 
   return (
     <div className='flex flex-col md:flex-row h-screen items-center text-gray-300'>
-        <div className=''>
+        <div className='max-w-[60%] md:max-w[70%] lg:max-w[100%]'>
           <img src={Dusty} alt='Dusty'/>
         </div>
         <div className='text-center'>
-          <h1 className='text-5xl md:text-[80px] font-bold mb-8'>
+          <h1 className='text-5xl text[60px] md:text-[80px] font-bold mb-8'>
             DUSTHEADS
           </h1>
           <form className='flex flex-col items-center'>
@@ -22,7 +22,7 @@ function Landing() {
             </button>
           </form>
         </div>
-        <div className=''>
+        <div className='max-w-[60%] md:max-w[70%] lg:max-w[100%]'>
           <img src={Vinyl} alt='Vinyl'/>
         </div>
     </div>
