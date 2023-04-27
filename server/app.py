@@ -7,7 +7,7 @@ from flask import request, make_response, session, jsonify
 from flask_restful import Resource
 
 # Local imports
-from config import app, db, api, bcrypt
+from config import app, db, api
 from models import DustHead, Record, Copy, Comment
 
 # Views go here!
