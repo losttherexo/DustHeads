@@ -51,15 +51,15 @@ class Login(Resource):
     def post(self):
         data = request.get_json()
         username = data['username']
-        password = data['password']
+        # password = data['password']
 
         dh = DustHead.query.filter(DustHead.username == username).first()
 
         if dh:
-            if dh.authenticate(password):
-                session['dh_id'] = dh.id
-                response = make_response(dh.to_dict(), 200)
-                return response
+            # if dh.authenticate(password):
+            session['dh_id'] = dh.id
+            response = make_response(dh.to_dict(), 200)
+            return response
             
         response = make_response({'error': '401: Not Authorized'}, 401)
         return response
@@ -68,7 +68,7 @@ class Logout(Resource):
     def delete(self):
         if session.get('dh_id'):
             session['dh_id'] = None
-            response = make_response({'message' : '204: No Content'}, 204)
+            response = make_response('', 204)
             return response
         
 class CheckSession(Resource):
@@ -93,12 +93,12 @@ class DustHeads(Resource):
         data = request.get_json()
         new_dh = DustHead(
             username = data['username'],
-            first_name = data['first_name'],
-            last_name = data['last_name']
+            email = data['email'],
         )
         try:
             db.session.add(new_dh)
             db.session.commit()
+            session['dh_id'] = new_dh.id
         except ValueError:
             db.session.rollback()
             response = make_response({'error': '400: Validation error.'}, 400)

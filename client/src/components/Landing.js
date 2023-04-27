@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Dusty from '../img/Dusty.png'
 import Vinyl from '../img/Vinyl.png'
 
-function Landing() {
+function Landing({updateUser}) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
 
@@ -14,8 +14,8 @@ function Landing() {
   };
 
   const formSchema = yup.object().shape({
-    username: yup.string().required('Please enter your username'),
-    email: yup.string().email()
+    username: yup.string().required('Username please'),
+    email: yup.string().email(),
   })
 
   const formik = useFormik({
@@ -25,13 +25,14 @@ function Landing() {
     },
     validationSchema:formSchema,
     onSubmit:(values) => {
-      // fetch('/login', {
-      //   method:'POST',
-      //   headers:{'Content-Type':'application/json'},
-      //   body: JSON.stringify(values)
-      // })
-      // .then(r => r.json())
-      // .then(user => updateUser(user))
+      console.log(values)
+      fetch(isOpen? '/dustheads':'/login', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify(values)
+      })
+      .then(r => r.json())
+      .then(user => updateUser(user))
       navigate('/home')
     }
   })
@@ -49,8 +50,8 @@ function Landing() {
           <form onSubmit={formik.handleSubmit} className='flex flex-col items-center'>
             <label htmlFor='username' className='block mb-2 font-medium'>Username</label>
             <input type='text' id='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' />
-            <label htmlFor='password' className='block mb-2 font-medium'>Password</label>
-            <input type='password' id='password' className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' />
+            {/* <label htmlFor='password' className='block mb-2 font-medium'>Password</label>
+            <input type='password' id='password' className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' /> */}
             <button type='submit' className='w-2/3 px-4 py-2 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
               Log In
             </button>
@@ -66,10 +67,10 @@ function Landing() {
             <form onSubmit={formik.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-20 text-center'>
               <label htmlFor='username' className='block mb-1 font-medium'>Username</label>
               <input type='text' id='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
-              <label htmlFor='email' className='block mb-1 font-medium'>Username</label>
+              <label htmlFor='email' className='block mb-1 font-medium'>Email</label>
               <input type='text' id='email' value={formik.values.email} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
-              <label htmlFor='password' className='block mb-1 font-medium'>Password</label>
-              <input type='password' id='password' className='w-2/3 p-1 border border-gray-400 rounded-md mb-2 text-gray-800' />
+              {/* <label htmlFor='password' className='block mb-1 font-medium'>Password</label>
+              <input type='password' id='password' className='w-2/3 p-1 border border-gray-400 rounded-md mb-2 text-gray-800' /> */}
               <button type='submit' className='w-2/3 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
                 Sign Up
               </button>
