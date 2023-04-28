@@ -1,5 +1,10 @@
 
 function DustHead() {
+    const [newRecord, setNewRecord] = useState('')
+
+    const handleAddRecord = ()  => {
+        dispatch(addRecord({title: newRecord}))
+      }
 
     return(
         <div>

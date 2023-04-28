@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRecord, fetchRecords } from '../reducers/recordSlice';
+import { fetchRecords } from '../reducers/recordSlice';
 import RecordCard from "./RecordCard";
 
 function Records() {
     const dispatch = useDispatch()
-    const [newRecord, setNewRecord] = useState('')
     
     useEffect(() => {
         dispatch(fetchRecords())
@@ -23,14 +22,6 @@ function Records() {
             title={r.title} 
         />
     )
-    
-    const handleChange = e => {
-      setNewRecord(e.target.value)
-    }
-  
-    const handleAddRecord = ()  => {
-      dispatch(addRecord({title: newRecord}))
-    }
 
     return(
         <div>
