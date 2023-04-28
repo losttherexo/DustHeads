@@ -32,12 +32,16 @@ function Landing({updateUser}) {
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify(values)
       })
-      .then(r => r.json())
-      .then(user => {
-        console.log(user)
-        updateUser(user)
-        navigate('/home')
-      })
+      .then(r => {
+        if(r.ok){
+          r.json().then(user => {
+            console.log(user)
+            updateUser(user)
+            navigate('/home')
+          })
+        }else{
+          console.log('Something went wrong!')
+      }})
     }
   })
 

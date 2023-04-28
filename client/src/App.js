@@ -27,15 +27,12 @@ function App() {
     })
   }
 
-
-
-  // if(!user) return(
-  //   <Landing updateUser={updateUser}/>
-  // )
-
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
-
+  
+  if(!user) return(
+    <Landing updateUser={updateUser}/>
+  )
   return (
     <>
     {!isLandingPage && <NavBar updateUser={updateUser}/>}
