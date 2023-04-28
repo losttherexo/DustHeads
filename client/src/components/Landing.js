@@ -14,14 +14,16 @@ function Landing({updateUser}) {
   };
 
   const formSchema = yup.object().shape({
-    username: yup.string().required('Username please'),
+    username: yup.string().required('Username Required'),
     email: yup.string().email(),
+    // password: yup.string().required('Password Required')
   })
 
   const formik = useFormik({
     initialValues:{
       username:'',
-      email:''
+      email:'',
+      // password:''
     },
     validationSchema:formSchema,
     onSubmit:(values) => {
@@ -68,8 +70,8 @@ function Landing({updateUser}) {
               <input type='text' id='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
               <label htmlFor='email' className='block mb-1 font-medium'>Email</label>
               <input type='text' id='email' value={formik.values.email} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
-              {/* <label htmlFor='password' className='block mb-1 font-medium'>Password</label>
-              <input type='password' id='password' className='w-2/3 p-1 border border-gray-400 rounded-md mb-2 text-gray-800' /> */}
+              <label htmlFor='password' className='block mb-1 font-medium'>Password</label>
+              <input type='password' id='password' className='w-2/3 p-1 border border-gray-400 rounded-md mb-2 text-gray-800' />
               <button type='submit' className='w-2/3 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
                 Sign Up
               </button>

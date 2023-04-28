@@ -21,7 +21,6 @@ class SignUp(Resource):
         username = data['username']        
         email = data['email']
         password = data['password']
-
         dh_exists = DustHead.query.filter(DustHead.username == username).first() is not None
 
         if dh_exists:
@@ -31,9 +30,7 @@ class SignUp(Resource):
         new_dh = DustHead(
             username = username,
             email = email,
-            _password_hash = password
         )
-
         new_dh.password_hash = password
 
         try:
@@ -51,15 +48,15 @@ class Login(Resource):
     def post(self):
         data = request.get_json()
         username = data['username']
-        # password = data['password']
+        password = data['password']
 
         dh = DustHead.query.filter_by(username = username).first()
 
         if dh:
-            # if dh.authenticate(password):
-            session['dh_id'] = dh.id
-            response = make_response(dh.to_dict(), 200)
-            return response
+            if dh.authenticate(password):
+                session['dh_id'] = dh.id
+                response = make_response(dh.to_dict(), 200)
+                return response
             
         response = make_response({'error': '401: Not Authorized'}, 401)
         return response

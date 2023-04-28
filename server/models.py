@@ -11,7 +11,7 @@ class DustHead(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    _password_hash = db.Column(db.String, nullable=False)
+    _password_hash = db.Column(db.String)
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))
     bio = db.Column(db.String(280))
