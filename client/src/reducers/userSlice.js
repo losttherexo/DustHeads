@@ -1,8 +1,11 @@
 const initialState = null
 
+export const updateUser = (user) => {
+    return {type: 'user/set', payload: user}}
+
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
-        case 'user/login':
+        case 'user/set':
             /* assumes action.payload is an array of objects */
             return action.payload
         // case 'user/signup':

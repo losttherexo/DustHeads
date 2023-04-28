@@ -27,6 +27,7 @@ function Landing({updateUser}) {
     },
     validationSchema:formSchema,
     onSubmit:(values) => {
+      // isOpen? =? dispatch(signupUser) : dispatch(loginUser())
       fetch(isOpen? '/signup':'/login', {
         method:'POST',
         headers:{'Content-Type':'application/json'},

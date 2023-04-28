@@ -1,7 +1,8 @@
 import {Routes, Route, useLocation} from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecords } from './reducers/recordSlice';
+import { updateUser } from './reducers/userSlice';
 import Landing from './components/Landing';
 import Home from './components/Home';
 import DustHead from './components/DustHead';
@@ -11,10 +12,10 @@ import NavBar from './components/NavBar';
 
 function App() {
   const dispatch = useDispatch()
-  const [user, setUser] = useState(null)
 
-  const updateUser = (user) => setUser(user)
-
+  const user = useSelector(state => {
+    return state.user
+})
     
   useEffect(() => {
       dispatch(fetchRecords())
@@ -28,9 +29,10 @@ function App() {
     fetch('/session')
     .then(r => {
       if(r.ok){
-        r.json().then(user => setUser(user))
+        r.json().then(user => {
+          dispatch({type: 'user/set', payload: user})})
       }else {
-        setUser(null)
+        dispatch({type: 'user/set', payload: null})
       }
     })
   }
@@ -41,6 +43,7 @@ function App() {
   if(!user) return(
     <Landing updateUser={updateUser}/>
   )
+  
   return (
     <>
     {!isLandingPage && <NavBar updateUser={updateUser}/>}
