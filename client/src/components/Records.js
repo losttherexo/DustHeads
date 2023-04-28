@@ -35,7 +35,7 @@ function Records() {
     return(
         <div>
             <h1 className='py-12 text-6xl font-bold text-center text-gray-300'>What's Poppin?</h1>
-            <div className='flex flex-col md:flex-row justify-center mx-6'>
+            <div className='flex flex-wrap md:flex-row justify-center mx-6'>
                 {recordCards}
             </div>
         </div>
