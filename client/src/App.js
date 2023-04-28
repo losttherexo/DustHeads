@@ -2,7 +2,7 @@ import {Routes, Route, useLocation} from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecords } from './reducers/recordSlice';
-import { updateUser } from './reducers/userSlice';
+import { updateUser, fetchUser } from './reducers/userSlice';
 import Landing from './components/Landing';
 import Home from './components/Home';
 import DustHead from './components/DustHead';
@@ -16,31 +16,16 @@ function App() {
   const user = useSelector(s => s.user)
     
   useEffect(() => {
-      dispatch(fetchRecords())
-  }, [dispatch])
-
-  useEffect(() => {
-    fetchUser()
+    dispatch(fetchUser())
+    dispatch(fetchRecords())
   }, [])
-
-  const fetchUser = () => {
-    fetch('/session')
-    .then(r => {
-      if(r.ok){
-        r.json().then(user => {
-          dispatch({type: 'user/set', payload: user})})
-      }else {
-        dispatch({type: 'user/set', payload: null})
-      }
-    })
-  }
-
+  
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
   
-  if(!user) return(
-    <Landing updateUser={updateUser}/>
-  )
+  // if(!user) return(
+  //   <Landing updateUser={updateUser}/>
+  // )
 
   return (
     <>
