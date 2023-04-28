@@ -1,14 +1,7 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRecords } from '../reducers/recordSlice';
+import { useSelector } from 'react-redux';
 import RecordCard from "./RecordCard";
 
 function Records() {
-    const dispatch = useDispatch()
-    
-    useEffect(() => {
-        dispatch(fetchRecords())
-    }, [dispatch])
     
     const records = useSelector(state => {
         return state.records

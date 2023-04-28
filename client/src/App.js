@@ -1,5 +1,7 @@
 import {Routes, Route, useLocation} from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchRecords } from './reducers/recordSlice';
 import Landing from './components/Landing';
 import Home from './components/Home';
 import DustHead from './components/DustHead';
@@ -11,6 +13,12 @@ function App() {
   const [user, setUser] = useState(null)
 
   const updateUser = (user) => setUser(user)
+
+  const dispatch = useDispatch()
+    
+  useEffect(() => {
+      dispatch(fetchRecords())
+  }, [dispatch])
 
   useEffect(() => {
     fetchUser()
