@@ -23,19 +23,21 @@ function Landing({updateUser}) {
     initialValues:{
       username:'',
       email:'',
-      password:''
+      password:'',
     },
     validationSchema:formSchema,
     onSubmit:(values) => {
-      console.log(values)
-      fetch(isOpen? '/dustheads':'/login', {
+      fetch(isOpen? '/signup':'/login', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify(values)
       })
       .then(r => r.json())
-      .then(user => updateUser(user))
-      navigate('/home')
+      .then(user => {
+        console.log(user)
+        updateUser(user)
+        navigate('/home')
+      })
     }
   })
 

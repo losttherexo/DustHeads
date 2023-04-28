@@ -7,8 +7,9 @@ from flask import request, make_response, session, abort
 from flask_restful import Resource
 
 # Local imports
-from config import app, db, api
+from config import app, db, api, bcrypt
 from models import DustHead, Record, Copy, Comment
+
 
 # Views go here!
 class Home(Resource):
@@ -18,14 +19,9 @@ class Home(Resource):
 class SignUp(Resource):
     def post(self):
         data = request.get_json()
-        username = data['username']        
+        username = data['username']
         email = data['email']
         password = data['password']
-        dh_exists = DustHead.query.filter(DustHead.username == username).first() is not None
-
-        if dh_exists:
-            response = make_response({"error": "User already exists"}, 409)
-            return response
 
         new_dh = DustHead(
             username = username,
@@ -256,6 +252,7 @@ class CommentsByID(Resource):
 api.add_resource(Home, '/')
 api.add_resource(Login, '/login')
 api.add_resource(Logout, '/logout')
+api.add_resource(SignUp, '/signup')
 api.add_resource(CheckSession, '/session')
 api.add_resource(DustHeads, '/dustheads')
 api.add_resource(DustHeadsByID, '/dustheads/<int:id>')
