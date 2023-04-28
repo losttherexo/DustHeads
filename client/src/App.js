@@ -13,9 +13,7 @@ import NavBar from './components/NavBar';
 function App() {
   const dispatch = useDispatch()
 
-  const user = useSelector(state => {
-    return state.user
-})
+  const user = useSelector(s => s.user)
     
   useEffect(() => {
       dispatch(fetchRecords())
@@ -43,7 +41,7 @@ function App() {
   if(!user) return(
     <Landing updateUser={updateUser}/>
   )
-  
+
   return (
     <>
     {!isLandingPage && <NavBar updateUser={updateUser}/>}
