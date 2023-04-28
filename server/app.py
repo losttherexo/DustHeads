@@ -57,9 +57,7 @@ class Login(Resource):
                 session['dh_id'] = dh.id
                 response = make_response(dh.to_dict(), 200)
                 return response
-            
-        response = make_response({'error': '401: Not Authorized'}, 401)
-        return response
+        return abort(401, 'Incorrect Username or Password')
     
 class Logout(Resource):
     def delete(self):
