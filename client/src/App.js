@@ -10,11 +10,11 @@ import NavBar from './components/NavBar';
 
 
 function App() {
+  const dispatch = useDispatch()
   const [user, setUser] = useState(null)
 
   const updateUser = (user) => setUser(user)
 
-  const dispatch = useDispatch()
     
   useEffect(() => {
       dispatch(fetchRecords())
@@ -46,7 +46,7 @@ function App() {
     {!isLandingPage && <NavBar updateUser={updateUser}/>}
     <Routes>
       <Route path='/' element={<Landing updateUser={updateUser}/>}/>
-      <Route path='/home' element={<Home updateUser={updateUser}/>}/>
+      <Route path='/home' element={<Home/>}/>
       <Route path='/dusthead' element={<DustHead/>}/>
       <Route path='/records' element={<Records/>}/>
     </Routes>

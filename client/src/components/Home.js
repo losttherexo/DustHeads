@@ -1,6 +1,6 @@
 
 
-function Home({updateUser}){
+function Home(){
 
     return(
         <div>
