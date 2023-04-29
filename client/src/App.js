@@ -7,14 +7,17 @@ import Landing from './components/Landing';
 import Home from './components/Home';
 import DustHead from './components/DustHead';
 import Records from './components/Records';
+import { fetchDustHeads } from './reducers/dustheadSlice';
 
 function App() {
   const dispatch = useDispatch()
 
   const user = useSelector(s => s.user)
+  const dustheads = useSelector(s => s.dustheads)
 
   useEffect(() => {
     dispatch(fetchUser())
+    dispatch(fetchDustHeads())
     dispatch(fetchRecords())
   }, []) 
 
@@ -22,9 +25,15 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={user? <Navigate to='/home'/> : <Landing/>}/>
-        <Route path='/home' element={user? <Home/>: <Navigate to='/'/>}/>
-        <Route path='/dusthead' element={user? <DustHead/> : <Navigate to='/'/>}/>
-        <Route path='/records' element={user? <Records/> : <Navigate to='/'/>}/>
+        <Route path='/home' element={<Home/>}/>
+        <Route path='/records' element={user? <Records/> : <Landing/>}/>
+        {dustheads.map((dusthead) => (
+          <Route 
+            key={dusthead.id} 
+            path={`/${dusthead.username}`} 
+            element={<DustHead/>} 
+          />
+        ))}
       </Routes>
     </>
   );

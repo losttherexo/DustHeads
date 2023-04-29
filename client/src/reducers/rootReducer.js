@@ -5,7 +5,7 @@ import { userReducer } from "./userSlice"
 
 
 const rootReducer = combineReducers({
-    dusthead: dustheadReducer,
+    dustheads: dustheadReducer,
     records: recordsReducer,
     user: userReducer,
 })
