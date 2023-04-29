@@ -61,7 +61,6 @@ class Copy(db.Model, SerializerMixin):
         '-dusthead.bio',
         '-record.genre',
         '-record.year',
-        '-record.image',
         '-record.id',
     )
 

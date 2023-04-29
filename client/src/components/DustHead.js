@@ -13,10 +13,10 @@ function DustHead({id}) {
         dispatch(fetchCopies())
     },[])
 
-    const filteredCopies = copies.filter((copy) => copy.dusthead_id === id);
+    const filteredCopies = copies.filter((c) => c.dusthead_id === id);
 
-    const copyCards = filteredCopies.map((copy) => (
-      <RecordCard key={copy.id} title={copy.record.title} />
+    const copyCards = filteredCopies.map((c) => (
+      <RecordCard key={c.id} title={c.record.title} image={c.record.image}/>
     ));
 
     return(
