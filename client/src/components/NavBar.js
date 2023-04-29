@@ -1,19 +1,15 @@
 import { useNavigate, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../reducers/userSlice";
 
-function NavBar({updateUser}){
+function NavBar(){
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const handleLogout = () => {
-        fetch('/logout',{
-            method: 'DELETE'
-        })
-        .then(r => {
-            if(r.ok){
-                console.log('byeeee')
-                updateUser(null)
-                navigate('/')
-            }
-        }) 
-    }    
+        dispatch(logoutUser())
+        navigate('/')
+    }
 
     return(
         <div className='border-b mx-6 py-4 text-gray-300'>

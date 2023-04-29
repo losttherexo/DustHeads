@@ -29,9 +29,9 @@ function App() {
 
   return (
     <>
-    {!isLandingPage && <NavBar updateUser={updateUser}/>}
+    {!isLandingPage && <NavBar/>}
     <Routes>
-      <Route path='/' element={<Landing updateUser={updateUser}/>}/>
+      <Route path='/' element={<Landing/>}/>
       <Route path='/home' element={<Home/>}/>
       <Route path='/dusthead' element={<DustHead/>}/>
       <Route path='/records' element={<Records/>}/>

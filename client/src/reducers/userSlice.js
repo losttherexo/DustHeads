@@ -57,16 +57,25 @@ export const signupUser = (values) => {
     }
 }
 
+export const logoutUser = () => {
+    return function (dispatch){
+        fetch('/logout',{
+            method: 'DELETE'
+        })
+        .then(r => {
+            if(r.ok){
+                dispatch({type: 'user/set', payload: null})
+            }else{
+                console.log('uh oh write an error message')
+            }
+        }) 
+    }
+}
+
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case 'user/set':
             return action.payload
-        // case 'user/signup':
-        //     /* assumes action.payload is an object */
-        //     return [...state, action.payload]
-        case 'user/logout':
-            /* assumes action.payload is an integer of a doomed ID */
-            return state.filter(rObj => rObj.id !== action.payload)
         default: return state
     }
 }

@@ -7,7 +7,7 @@ import * as yup from 'yup'
 import Dusty from '../img/Dusty.png'
 import Vinyl from '../img/Vinyl.png'
 
-function Landing({updateUser}) {
+function Landing() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -32,9 +32,7 @@ function Landing({updateUser}) {
     validationSchema:formSchema,
     onSubmit:(values) => {
       {isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))}
-      if (user) {
-        navigate('/home')
-      }
+      navigate('/home')
     }
   })
 
