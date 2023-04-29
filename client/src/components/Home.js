@@ -6,7 +6,9 @@ function Home(){
         <div>
             <div className='flex flex-col sm:flex-row justify-center h-screen'>
                 <div className='mx-6'>
-                    hello
+                    <span>
+                        hello
+                    </span>
                 </div>
                 <div className='mx-6'>
                     <h1>
@@ -14,7 +16,9 @@ function Home(){
                     </h1>
                 </div>
                 <div className='mx-6'>
-                    yes
+                    <span>
+                        yes
+                    </span>
                 </div>
             </div>
         </div>
