@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, signupUser } from '../reducers/userSlice';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
@@ -11,6 +11,7 @@ function Landing({updateUser}) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const user = useSelector(s => s.user)
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -31,9 +32,12 @@ function Landing({updateUser}) {
     validationSchema:formSchema,
     onSubmit:(values) => {
       {isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))}
-      navigate('/home')
+      if (user) {
+        navigate('/home')
+      }
     }
   })
+
 
   return (
     <div className='flex flex-col md:flex-row h-screen items-center text-gray-300'>

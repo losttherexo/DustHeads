@@ -1,7 +1,9 @@
+
 const initialState = null
 
 export const updateUser = (user) => {
-    return {type: 'user/set', payload: user}}
+    return {type: 'user/set', payload: user}
+}
 
 export const fetchUser = () => {
     return function (dispatch){
@@ -27,11 +29,10 @@ export const loginUser = (values) => {
         .then(r => {
             if(r.ok){
                 r.json().then(user => {
-                    console.log('success!')
                     dispatch({type: 'user/set', payload:user})
                 })
             }else{
-                console.log('time to debug')
+                dispatch({type: 'user/set', payload: null})
             }
         })
     }
@@ -47,11 +48,10 @@ export const signupUser = (values) => {
         .then(r => {
             if(r.ok){
                 r.json().then(user => {
-                    console.log('success!')
                     dispatch({type: 'user/set', payload:user})
                 })
             }else{
-                console.log('time to debug')
+                dispatch({type: 'user/set', payload: null})
             }
         })
     }
