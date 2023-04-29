@@ -14,7 +14,7 @@ function DustHead({id}) {
                 profile info
             </div>
             <div>
-            crate
+                crate
             </div>
         </div>
     )
