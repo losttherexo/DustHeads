@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../reducers/recordSlice"
+import NavBar from "./NavBar"
 
 function DustHead() {
     const [newRecord, setNewRecord] = useState('')
@@ -12,6 +13,7 @@ function DustHead() {
 
     return(
         <div>
+            <NavBar/>
             <h1>
                 this is ur crate
             </h1>
