@@ -4,9 +4,7 @@ import NavBar from './NavBar';
 
 function Records() {
     
-    const records = useSelector(state => {
-        return state.records
-    })
+    const records = useSelector(s => s.records)
 
     const recordCards = records.map(
         r => <RecordCard 

@@ -16,9 +16,9 @@ function App() {
   const dustheads = useSelector(s => s.dustheads)
 
   useEffect(() => {
-    dispatch(fetchUser())
     dispatch(fetchDustHeads())
     dispatch(fetchRecords())
+    dispatch(fetchUser())
   }, []) 
 
   return (
@@ -31,7 +31,7 @@ function App() {
           <Route 
             key={dusthead.id} 
             path={`/${dusthead.username}`} 
-            element={<DustHead/>} 
+            element={<DustHead id={dusthead.id}/>} 
           />
         ))}
       </Routes>

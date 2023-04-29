@@ -24,7 +24,7 @@ function NavBar(){
                 <ul className='hidden md:flex text-2xl'>
                     <li className='p-4'><NavLink to='/records'>records</NavLink></li>
                     <li className='p-4'><NavLink to='/home'>home</NavLink></li>
-                    {user && <li className='p-4'><NavLink to={`/${user.username}`}>Profile</NavLink></li>}
+                    {user && <li className='p-4'><NavLink to={`/${user.username}`}>profile</NavLink></li>}
                 </ul>
             </div>
         </div>
