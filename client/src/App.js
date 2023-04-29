@@ -1,4 +1,4 @@
-import {Routes, Route, useLocation} from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecords } from './reducers/recordSlice';
@@ -13,24 +13,19 @@ function App() {
 
   const user = useSelector(s => s.user)
 
-    
   useEffect(() => {
     dispatch(fetchUser())
     dispatch(fetchRecords())
-  }, [])
-  
-  if(!user) return(
-    <Landing/>
-  )
+  }, []) 
 
   return (
     <>
-    <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/home' element={<Home/>}/>
-      <Route path='/dusthead' element={<DustHead/>}/>
-      <Route path='/records' element={<Records/>}/>
-    </Routes>
+      <Routes>
+        <Route path='/' element={user? <Navigate to='/home'/> : <Landing/>}/>
+        <Route path='/home' element={user? <Home/>: <Navigate to='/'/>}/>
+        <Route path='/dusthead' element={user? <DustHead/> : <Navigate to='/'/>}/>
+        <Route path='/records' element={user? <Records/> : <Navigate to='/'/>}/>
+      </Routes>
     </>
   );
 }
