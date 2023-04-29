@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { loginUser, signupUser } from '../reducers/userSlice';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import { useNavigate } from "react-router-dom";
 import Dusty from '../img/Dusty.png'
 import Vinyl from '../img/Vinyl.png'
 
 function Landing({updateUser}) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -27,22 +30,8 @@ function Landing({updateUser}) {
     },
     validationSchema:formSchema,
     onSubmit:(values) => {
-      // isOpen? =? dispatch(signupUser) : dispatch(loginUser())
-      fetch(isOpen? '/signup':'/login', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(values)
-      })
-      .then(r => {
-        if(r.ok){
-          r.json().then(user => {
-            console.log(user)
-            updateUser(user)
-            navigate('/home')
-          })
-        }else{
-          console.log('Something went wrong!')
-      }})
+      {isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))}
+      navigate('/home')
     }
   })
 

@@ -8,6 +8,7 @@ function NavBar({updateUser}){
         })
         .then(r => {
             if(r.ok){
+                console.log('byeeee')
                 updateUser(null)
                 navigate('/')
             }

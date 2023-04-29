@@ -17,6 +17,46 @@ export const fetchUser = () => {
     }
 }
 
+export const loginUser = (values) => {
+    return function (dispatch){
+        fetch('/login', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(values)
+        })
+        .then(r => {
+            if(r.ok){
+                r.json().then(user => {
+                    console.log('success!')
+                    dispatch({type: 'user/set', payload:user})
+                })
+            }else{
+                console.log('time to debug')
+            }
+        })
+    }
+}
+
+export const signupUser = (values) => {
+    return function (dispatch){
+        fetch('/signup', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(values)
+        })
+        .then(r => {
+            if(r.ok){
+                r.json().then(user => {
+                    console.log('success!')
+                    dispatch({type: 'user/set', payload:user})
+                })
+            }else{
+                console.log('time to debug')
+            }
+        })
+    }
+}
+
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case 'user/set':
