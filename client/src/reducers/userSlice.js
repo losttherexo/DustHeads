@@ -19,7 +19,7 @@ export const fetchUser = () => {
 }
 
 export const loginUser = (values) => {
-    return function (dispatch){
+    return function(dispatch){
         fetch('/login', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
@@ -68,6 +68,23 @@ export const logoutUser = () => {
                 console.log('uh oh write an error message')
             }
         }) 
+    }
+}
+
+export const updateDustHead = (values) => {
+    return function(dispatch){
+        fetch(`/dustheads/${values.id}`, {
+            method:'PATCH',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(values)
+        })
+        .then(r => {
+            if(r.ok){
+                r.json().then(user => {
+                    dispatch({type: 'user/set', payload:user})
+                })
+            }
+        })
     }
 }
 
