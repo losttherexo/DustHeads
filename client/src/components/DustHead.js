@@ -4,6 +4,7 @@ import { addRecord } from "../reducers/recordSlice"
 import NavBar from "./NavBar"
 import RecordCard from "./RecordCard"
 import { fetchCopies } from "../reducers/copySlice"
+import Recommend from "./Recommend"
 
 function DustHead({id}) {
     const dispatch = useDispatch()
@@ -20,14 +21,21 @@ function DustHead({id}) {
     ));
 
     return(
-        <div>
-            <NavBar/>
-            <div>
-                profile info
+        <div className='flex'>
+            <div className='flex-col'>   
+                <NavBar/>
+            </div>
+            <div className='flex-col justify-center mx-6 basis-[65%]'>
+                <div>
+                    profile info
+                </div>
+                <div>
+                    crate
+                    {copyCards}
+                </div>
             </div>
             <div>
-                crate
-                {copyCards}
+                <Recommend/>
             </div>
         </div>
     )

@@ -17,8 +17,8 @@ function Records() {
     )
 
     return(
-        <div className='flex w-full'>
-            <div className='flex-col basis-[15%]'>
+        <div className='flex'>
+            <div className='flex-col'>
                 <NavBar/>
             </div>
             <div className='flex-col justify-center mx-6 basis-[65%]'>

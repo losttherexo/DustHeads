@@ -1,5 +1,5 @@
 import NavBar from "./NavBar"
-
+import Recommend from "./Recommend"
 
 function Home(){
 
@@ -8,22 +8,11 @@ function Home(){
             <div className='flex-col'>
                 <NavBar/>
             </div>
-            <div className='sm:flex-row justify-center h-screen'>
-                <div className='mx-6'>
-                    <span>
-                        hello
-                    </span>
-                </div>
-                <div className='mx-6'>
-                    <h1>
-                        these are our copy cards
-                    </h1>
-                </div>
-                <div className='mx-6'>
-                    <span>
-                        yes
-                    </span>
-                </div>
+            <div className='sm:flex-row justify-center h-screen basis-[65%] mx-6'>
+                these are our copy cards
+            </div>
+            <div>
+                <Recommend/>
             </div>
         </div>
     )
