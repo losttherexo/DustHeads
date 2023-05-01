@@ -1,6 +1,7 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../reducers/userSlice";
+import Dusty from '../img/Dusty.png'
 
 function NavBar() {
     const dispatch = useDispatch();
@@ -13,27 +14,34 @@ function NavBar() {
     };
   
     return (
-      <div className='hidden md:flex h-full border-r py-4 text-gray-300 flex-col'>
+      <div className='hidden md:flex h-full border-r py-2 text-gray-300 flex-col text-center'>
         <div className='mx-6 flex md:justify-between items-center flex-col'>
+          <img className='w-[80%]' src={Dusty} alt='Dusty'/>
+          <ul className="flex text-3xl flex-col text-left">
+            <li className="pb-2">
+              <NavLink to="/home">Home</NavLink>
+            </li>
+            <li className="pb-2">
+              <NavLink to="/records">Records</NavLink>
+            </li>
+            {user && (
+              <li className="pb-2">
+                <NavLink to={`/${user.username}`}>Profile</NavLink>
+              </li>              
+            )}
+          </ul>
           <button
             onClick={handleLogout}
-            className='border rounded-sm my-4 py-1 px-3 hover:text-black hover:bg-slate-500'
+            className='rounded-3xl my-4 py-2 px-6 text-xl font-bold bg-slate-500'
+          >
+            New Find
+          </button>
+          <button
+            onClick={handleLogout}
+            className='border rounded-sm my-8 text-xl py-1 px-4 hover:text-black hover:bg-slate-500 absolute bottom-0'
           >
             Logout
           </button>
-          <ul className="flex text-2xl flex-col">
-            <li className="p-4">
-              <NavLink to="/records">records</NavLink>
-            </li>
-            <li className="p-4">
-              <NavLink to="/home">home</NavLink>
-            </li>
-            {user && (
-              <li className="p-4">
-                <NavLink to={`/${user.username}`}>profile</NavLink>
-              </li>
-            )}
-          </ul>
         </div>
       </div>
     );
