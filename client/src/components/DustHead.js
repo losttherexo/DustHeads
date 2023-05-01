@@ -4,6 +4,7 @@ import NavBar from "./NavBar"
 import CopyCard from "./CopyCard"
 import { fetchCopies } from "../reducers/copySlice"
 import Recommend from "./Recommend"
+import UpdateProfileModal from "./UpdateProfileModal"
 
 function DustHead({id}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,7 @@ function DustHead({id}) {
             <div className='flex-col basis-[20%]'>
                 <Recommend/>
             </div>
-            
+            {isOpen? <UpdateProfileModal isOpen={isOpen} setIsOpen={setIsOpen}/> : null }
         </div>
     )
 } 
