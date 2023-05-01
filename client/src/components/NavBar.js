@@ -13,7 +13,7 @@ function NavBar() {
     };
   
     return (
-      <div className='h-full border-r py-4 text-gray-300 flex-col'>
+      <div className='hidden md:flex h-full border-r py-4 text-gray-300 flex-col'>
         <div className='mx-6 flex md:justify-between items-center flex-col'>
           <button
             onClick={handleLogout}
@@ -21,7 +21,7 @@ function NavBar() {
           >
             Logout
           </button>
-          <ul className="hidden md:flex text-2xl flex-col">
+          <ul className="flex text-2xl flex-col">
             <li className="p-4">
               <NavLink to="/records">records</NavLink>
             </li>
