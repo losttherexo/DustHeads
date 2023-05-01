@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, signupUser } from '../reducers/userSlice';
@@ -17,12 +17,6 @@ function Landing() {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    if (user !== null) {
-      navigate('/home')
-    }
-  }, [user, navigate])
-
   const formSchema = yup.object().shape({
     username: yup.string().required('Username Required'),
     email: yup.string().email(),
@@ -38,6 +32,7 @@ function Landing() {
     validationSchema:formSchema,
     onSubmit:(values) => {
       {isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))}
+      navigate('/home')
     }
   })
 

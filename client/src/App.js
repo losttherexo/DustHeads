@@ -24,8 +24,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={!user? <Landing/> : <Navigate to='/home'/>}/>
-        <Route path='/home' element={user? <Home/> : <Landing/>}/>
+        <Route path='/' element={user? <Navigate to='/home'/> : <Landing/>}/>
+        <Route path='/home' element={<Home/>}/>
         <Route path='/records' element={user? <Records/> : <Landing/>}/>
         {dustheads.map((dusthead) => (
           <Route 
