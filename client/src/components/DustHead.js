@@ -4,7 +4,6 @@ import NavBar from "./NavBar"
 import CopyCard from "./CopyCard"
 import { fetchCopies } from "../reducers/copySlice"
 import Recommend from "./Recommend"
-import UpdateProfileModal from "./UpdateProfileModal"
 
 function DustHead({id}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +18,6 @@ function DustHead({id}) {
 
     const editProfile = () => {
         setIsOpen(!isOpen);
-        console.log('yes')
       };
 
     const filteredCopies = copies.filter((c) => c.dusthead_id === id);
@@ -50,7 +48,6 @@ function DustHead({id}) {
             <div className='flex-col basis-[20%]'>
                 <Recommend/>
             </div>
-            {isOpen? <UpdateProfileModal isOpen={isOpen} setIsOpen={setIsOpen}/> : null }
         </div>
     )
 } 
