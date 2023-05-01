@@ -10,9 +10,7 @@ function NavBar(){
 
     const handleLogout = () => {
         dispatch(logoutUser())
-        if (!user){
-            navigate('/')
-        }
+        navigate('/')
     }
 
     return(

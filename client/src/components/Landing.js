@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Dusty from '../img/Dusty.png'
 import Vinyl from '../img/Vinyl.png'
+import Home from './Home';
 
 function Landing() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,7 @@ function Landing() {
     }
   })
 
+  if (user) return <Home/>
 
   return (
     <div className='flex flex-col md:flex-row h-screen items-center text-gray-300'>

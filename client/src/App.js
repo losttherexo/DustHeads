@@ -21,12 +21,14 @@ function App() {
     dispatch(fetchUser())
   }, []) 
 
+  console.log(user)
+
   return (
     <>
       <Routes>
-        <Route path='/' element={user? <Navigate to='/home'/> : <Landing/>}/>
+        <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
-        <Route path='/records' element={user? <Records/> : <Landing/>}/>
+        <Route path='/records' element={<Records/>}/>
         {dustheads.map((dusthead) => (
           <Route 
             key={dusthead.id} 
