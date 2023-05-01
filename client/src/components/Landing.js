@@ -33,7 +33,9 @@ function Landing() {
     validationSchema:formSchema,
     onSubmit:(values) => {
       isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))
-      navigate('/home')
+      if(user){
+        navigate('/home')
+      }
     }
   })
 
