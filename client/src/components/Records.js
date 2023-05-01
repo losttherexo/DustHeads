@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import RecordCard from "./RecordCard";
 import NavBar from './NavBar';
+import Recommend from './Recommend';
 
 function Records() {
     
@@ -16,12 +17,18 @@ function Records() {
     )
 
     return(
-        <div>
-            <NavBar/>
-            <h1 className='py-12 text-6xl font-bold text-center text-gray-300'>What's Poppin?</h1>
-            <div className='flex flex-wrap md:flex-row justify-center mx-6'>
+        <div className='flex w-full'>
+            <div className='flex-col basis-[15%]'>
+                <NavBar/>
+            </div>
+            <div className='flex-col justify-center mx-6 basis-[65%]'>
+                <h1 className='py-12 text-6xl font-bold text-center text-gray-300'>What's Poppin?</h1>
                 {recordCards}
             </div>
+            <div>
+                <Recommend/>
+            </div>
+
         </div>
     )
 }

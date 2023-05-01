@@ -4,9 +4,11 @@ import NavBar from "./NavBar"
 function Home(){
 
     return(
-        <div>
-            <NavBar/>
-            <div className='flex flex-col sm:flex-row justify-center h-screen'>
+        <div className='flex'>
+            <div className='flex-col'>
+                <NavBar/>
+            </div>
+            <div className='sm:flex-row justify-center h-screen'>
                 <div className='mx-6'>
                     <span>
                         hello
