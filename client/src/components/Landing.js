@@ -34,6 +34,7 @@ function Landing() {
     onSubmit:(values) => {
       isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))
       if(user){
+        console.log(user)
         navigate('/home')
       }
     }

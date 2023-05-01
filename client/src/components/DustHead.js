@@ -36,7 +36,7 @@ function DustHead({id}) {
                         <button className='mx-2 px-4 font-bold bg-slate-500 hover:bg-black rounded-3xl'>Edit Profile</button>
                     </div>
                 </div>
-                <div className='mx-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
+                <div className='mx-6 grid grid-cols-3'>
                     {copyCards}
                 </div>
             </div>

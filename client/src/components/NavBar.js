@@ -14,7 +14,7 @@ function NavBar() {
     };
   
     return (
-      <div className='hidden md:flex h-full border-r py-2 text-gray-300 flex-col text-center'>
+      <div className='hidden md:flex h-screen border-r py-2 text-gray-300 flex-col text-center'>
         <div className='mx-6 flex md:justify-between items-center flex-col'>
           <img className='w-[80%]' src={Dusty} alt='Dusty'/>
           <ul className="flex text-3xl flex-col text-left">
