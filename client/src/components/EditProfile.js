@@ -1,15 +1,21 @@
 import NavBar from "./NavBar"
 import Recommend from "./Recommend"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 import { useFormik } from 'formik'
-import { updateDustHead } from "../reducers/userSlice"
+import { deleteUser, updateUser, fetchUser } from "../reducers/userSlice"
 import * as yup from 'yup'
-
-
+import { useState } from "react"
 
 function EditProfile() {
+    const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch()
     const user = useSelector(s => s.user)
+    const navigate = useNavigate()
+
+    const toggleModal = () => {
+        setIsOpen(!isOpen)
+      }
 
     const formSchema = yup.object().shape({
         bio: yup.string(),
@@ -36,13 +42,16 @@ function EditProfile() {
                 delete updatedValues[key];
               }
             }
-            dispatch(updateDustHead(updatedValues));
+            dispatch(updateUser(updatedValues));
             resetForm();
+            navigate(`/${user.username}`)
           }
       })
 
-    const handleDelete = () => {
-        console.log('bye')
+    const handleDelete = (id) => {
+        dispatch(deleteUser(id))
+        dispatch(fetchUser())
+        navigate('/')
       }
 
     return(
@@ -67,11 +76,20 @@ function EditProfile() {
                             </button>
                         </form>
                         <div className='flex flex-col w-3/4 self-center'>
-                            <button onClick={handleDelete} className='self-center w-1/2 p-1.5 mt-2 text-white bg-red-700 rounded-md hover:bg-red-800'>
+                            <button onClick={toggleModal} className='self-center w-1/2 p-1.5 mt-2 text-white bg-red-700 rounded-md hover:bg-red-800'>
                                 Delete Account
                             </button>
                         </div>      
                 </div>
+                {isOpen && (
+                    <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center text-black">
+                        <div className='rounded py-8 px-16 bg-slate-900 flex flex-col self-center text-center text-gray-300'>
+                            <h1 className='py-2 font-bold text-lg'>Are you sure?</h1>
+                            <button onClick={() => handleDelete(user.id)} className='py-2 bg-red-700 rounded-md hover:bg-red-800'>Yes I'm Sure</button> 
+                            <button onClick={toggleModal} className='py-2 mt-4 bg-slate-500 rounded-md hover:bg-gray-800'>Nevermind</button> 
+                        </div>
+                    </div>
+                )}
             </div>
             <div className='flex-col basis-[20%]'>
                 <Recommend/>

@@ -123,7 +123,8 @@ class DustHeadsByID(Resource):
             return make_response({'error': '404: DustHead not found'}, 404)
         db.session.delete(dh)
         db.session.commit()
-        return make_response('DustHead has been deleted!', 204)
+        response = make_response({'success': 'DustHead blowing in the wind'}, 204)
+        return response
     
 class Records(Resource):
     def get(self):

@@ -17,8 +17,8 @@ class DustHead(db.Model, SerializerMixin):
     bio = db.Column(db.String(280))
     admin = db.Column(db.String, default=False)
 
-    copies = db.relationship('Copy', backref='dusthead', lazy=True)
-    comments = db.relationship('Comment', backref='dusthead', lazy=True)
+    copies = db.relationship('Copy', backref='dusthead', lazy=True, cascade='all, delete')
+    comments = db.relationship('Comment', backref='dusthead', lazy=True, cascade='all, delete')
 
     @hybrid_property
     def password_hash(self):

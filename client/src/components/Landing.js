@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, signupUser } from '../reducers/userSlice';
+import { fetchUser, loginUser, signupUser } from '../reducers/userSlice';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Dusty from '../img/Dusty.png'
@@ -34,7 +34,6 @@ function Landing() {
     onSubmit:(values) => {
       isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))
       if(user){
-        console.log(user)
         navigate('/home')
       }
     }

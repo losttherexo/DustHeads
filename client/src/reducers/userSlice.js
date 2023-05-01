@@ -1,9 +1,5 @@
 const initialState = null
 
-export const updateUser = (user) => {
-    return {type: 'user/set', payload: user}
-}
-
 export const fetchUser = () => {
     return function (dispatch){
         fetch('/session')
@@ -71,7 +67,7 @@ export const logoutUser = () => {
     }
 }
 
-export const updateDustHead = (values) => {
+export const updateUser = (values) => {
     return function(dispatch){
         fetch(`/dustheads/${values.id}`, {
             method:'PATCH',
@@ -85,6 +81,15 @@ export const updateDustHead = (values) => {
                 })
             }
         })
+    }
+}
+
+export const deleteUser = (id) => {
+    return function(dispatch){
+        fetch(`/dustheads/${id}`, {
+            method: 'DELETE'
+        })
+        dispatch({type: 'user/set', payload: null})
     }
 }
 
