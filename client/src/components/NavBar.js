@@ -32,13 +32,13 @@ function NavBar() {
           </ul>
           <button
             onClick={handleLogout}
-            className='rounded-3xl my-4 py-2 px-6 text-xl font-bold bg-slate-500'
+            className='rounded-3xl my-4 py-2 px-6 text-xl font-bold bg-slate-500 hover:bg-black'
           >
             New Find
           </button>
           <button
             onClick={handleLogout}
-            className='border rounded-sm my-8 text-xl py-1 px-4 hover:text-black hover:bg-slate-500 absolute bottom-0'
+            className='border rounded-sm my-8 text-xl py-1 px-4 hover:text-white hover:bg-black absolute bottom-0'
           >
             Logout
           </button>

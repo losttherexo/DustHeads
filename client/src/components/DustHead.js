@@ -21,21 +21,22 @@ function DustHead({id}) {
       <CopyCard key={c.id} title={c.record.title} image={c.record.image}/>
     ));
 
-    console.log(dusthead.bio)
-
-    return(
+   return(
         <div className='flex text-gray-300'>
             <div className='flex-col basis-[15%]'>   
                 <NavBar/>
             </div>
             <div className='flex-col justify-center mx-6 basis-[65%]'>
-                <div className='flex flex-col mx-2 mt-12'>
+                <div className='flex flex-col mx-6 mb-4 mt-12'>
                     <span className='text-6xl'>{dusthead.username}</span>
-                    <span className='my-2'>
-                        {dusthead.bio? dusthead.bio : 'welp here goes nothing'}
-                    </span>
+                    <div className='flex justify-between'>
+                        <span className='my-2'>
+                            {dusthead.bio? dusthead.bio : 'welp here goes nothing'}
+                        </span>
+                        <button className='mx-2 px-4 font-bold bg-slate-500 hover:bg-black rounded-3xl'>Edit Profile</button>
+                    </div>
                 </div>
-                <div>
+                <div className='mx-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
                     {copyCards}
                 </div>
             </div>
@@ -44,6 +45,6 @@ function DustHead({id}) {
             </div>
         </div>
     )
-}
+} 
 
 export default DustHead
