@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import NavBar from "./NavBar"
 import CopyCard from "./CopyCard"
@@ -6,8 +7,8 @@ import { fetchCopies } from "../reducers/copySlice"
 import Recommend from "./Recommend"
 
 function DustHead({id}) {
-    const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const copies = useSelector(s => s.copies)
     const dh = useSelector(s => s.dustheads)
     const dusthead = dh.find((d) => d.id === id);
@@ -17,7 +18,7 @@ function DustHead({id}) {
     },[])
 
     const editProfile = () => {
-        setIsOpen(!isOpen);
+        navigate('/edit-account')
       };
 
     const filteredCopies = copies.filter((c) => c.dusthead_id === id);
