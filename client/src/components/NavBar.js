@@ -1,6 +1,7 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, logoutUser } from "../reducers/userSlice";
+import { useEffect } from "react";
 
 function NavBar(){
     const dispatch = useDispatch()
@@ -10,10 +11,13 @@ function NavBar(){
 
     const handleLogout = () => {
         dispatch(logoutUser())
+    }
+    
+    useEffect(() => {
         if (!user){
             navigate('/')
         }
-    }
+    }, [user, navigate])
 
     return(
         <div className='border-b mx-6 py-4 text-gray-300'>
