@@ -1,6 +1,6 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, logoutUser } from "../reducers/userSlice";
+import { logoutUser } from "../reducers/userSlice";
 
 function NavBar() {
     const dispatch = useDispatch();

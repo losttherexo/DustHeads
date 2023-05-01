@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecords } from './reducers/recordSlice';
@@ -12,14 +12,13 @@ import { fetchDustHeads } from './reducers/dustheadSlice';
 function App() {
   const dispatch = useDispatch()
 
-  const user = useSelector(s => s.user)
   const dustheads = useSelector(s => s.dustheads)
 
   useEffect(() => {
     dispatch(fetchUser())
     dispatch(fetchDustHeads())
     dispatch(fetchRecords())
-  }, []) 
+  },[]) 
 
   return (
     <>

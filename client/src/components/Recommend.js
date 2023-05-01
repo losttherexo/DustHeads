@@ -1,16 +1,4 @@
-import { useNavigate, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, logoutUser } from "../reducers/userSlice";
-
-function NavBar() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const user = useSelector((s) => s.user);
-  
-    const handleLogout = () => {
-      dispatch(logoutUser());
-      navigate("/");
-    };
+function Recommend() {
   
     return (
       <div className='hidden md:flex h-full border-l py-4 text-gray-300 flex-col'>
@@ -23,5 +11,5 @@ function NavBar() {
     );
   }
   
-  export default NavBar;
+  export default Recommend;
   
