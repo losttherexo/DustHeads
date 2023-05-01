@@ -16,12 +16,10 @@ function App() {
   const dustheads = useSelector(s => s.dustheads)
 
   useEffect(() => {
+    dispatch(fetchUser())
     dispatch(fetchDustHeads())
     dispatch(fetchRecords())
-    dispatch(fetchUser())
   }, []) 
-
-  console.log(user)
 
   return (
     <>
