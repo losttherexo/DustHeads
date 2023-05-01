@@ -22,7 +22,7 @@ function DustHead({id}) {
 
     return(
         <div className='flex'>
-            <div className='flex-col'>   
+            <div className='flex-col basis-[15%]'>   
                 <NavBar/>
             </div>
             <div className='flex-col justify-center mx-6 basis-[65%]'>
@@ -34,7 +34,7 @@ function DustHead({id}) {
                     {copyCards}
                 </div>
             </div>
-            <div>
+            <div className='flex-col basis-[20%]'>
                 <Recommend/>
             </div>
         </div>

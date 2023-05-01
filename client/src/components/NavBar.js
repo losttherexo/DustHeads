@@ -13,11 +13,11 @@ function NavBar() {
     };
   
     return (
-      <div className="h-full border-r py-4 text-gray-300 flex-col">
-        <div className="mx-6 flex md:justify-between items-center flex-col">
+      <div className='h-full border-r py-4 text-gray-300 flex-col'>
+        <div className='mx-6 flex md:justify-between items-center flex-col'>
           <button
             onClick={handleLogout}
-            className="border rounded-sm my-4 py-1 px-3 hover:text-black hover:bg-slate-500"
+            className='border rounded-sm my-4 py-1 px-3 hover:text-black hover:bg-slate-500'
           >
             Logout
           </button>

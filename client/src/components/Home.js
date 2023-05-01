@@ -4,14 +4,14 @@ import Recommend from "./Recommend"
 function Home(){
 
     return(
-        <div className='flex'>
-            <div className='flex-col'>
+        <div className='flex w-full'>
+            <div className='flex-col basis-[15%]'>
                 <NavBar/>
             </div>
-            <div className='sm:flex-row justify-center h-screen basis-[65%] mx-6'>
+            <div className='sm:flex-row justify-center h-screen mx-6 basis-[65%]'>
                 these are our copy cards
             </div>
-            <div>
+            <div className='flex-col basis-[20%]'>
                 <Recommend/>
             </div>
         </div>
