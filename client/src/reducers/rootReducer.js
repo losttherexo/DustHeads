@@ -8,8 +8,7 @@ const rootReducer = combineReducers({
     dustheads: dustheadReducer,
     records: recordsReducer,
     user: userReducer,
-    copies: copyReducer
-
+    copies: copyReducer,
 })
 
 export default rootReducer
