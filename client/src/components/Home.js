@@ -26,7 +26,7 @@ function Home(){
                     <NavBar/>
             </div>
             <div className='flex-col justify-center mx-6 basis-[55%]'>
-                <div className='h-32 border-b flex items-center justify-center'>
+                <div className='h-36 border-b flex items-center justify-center'>
                     <h1 className='text-3xl'>
                         maybe an animation or something fun
                     </h1>
