@@ -1,7 +1,11 @@
 function RecordCard({title, image, artist}){
   return (
-    <div className='border border-white border-opacity-30 rounded-sm p-4 m-2 self-center text-center text-gray-300 md:w-1/3 '>
-      <img src={image} alt={title} className='flex max-h-44 md:max-h-56 mx-auto'/>
+    <div className='flex flex-row border rounded-sm my-2 text-center text-gray-300 w-full'>
+      <img src={image} alt={title} className='flex max-h-44 md:max-h-56 md:w-1/3'/>
+      <div className='flex flex-col w-full text-left'>
+        <p className='border-b px-2 py-1'>record title by artist</p>
+        <p className='border-b px-2 py-1'>genre, year</p>
+      </div>
     </div>
   )
 }
