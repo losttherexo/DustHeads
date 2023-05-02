@@ -34,10 +34,10 @@ function DustHead({id}) {
 
    return(
         <div className='flex text-gray-300 h-screen'>
-            <div className='flex-col basis-[15%]'>   
+            <div className='flex-col basis-[20%]'>   
                 <NavBar/>
             </div>
-            <div className='flex-col justify-center mx-6 basis-[65%]'>
+            <div className='flex-col justify-center mx-6 basis-[55%]'>
                 <div className='flex flex-col mx-6 mb-4 mt-12'>
                     <span className='text-6xl'>{dusthead.username}</span>
                     <div className='flex justify-between'>
@@ -53,7 +53,7 @@ function DustHead({id}) {
                     {copyCards}
                 </div>
             </div>
-            <div className='flex-col basis-[20%]'>
+            <div className='flex-col basis-[25%]'>
                 <Recommend/>
             </div>
         </div>

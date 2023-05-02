@@ -47,10 +47,10 @@ function NewFind(){
       
     return(
         <div className='h-screen flex text-gray-300'>
-            <div className='flex-col basis-[15%]'>   
+            <div className='flex-col basis-[20%]'>   
                 <NavBar/>
             </div>
-            <div className='justify-center mx-6 basis-[65%] mb-4 mt-12'>
+            <div className='justify-center mx-6 basis-[55%] mb-4 mt-12'>
                 <span className='mx-6  text-6xl'>New Find?</span>
                 <div className='flex flex-col pt-28 justify-between'>
                         <form onSubmit={form.handleSubmit} className='flex flex-col w-3/4 self-center py-4 text-left'>
@@ -67,7 +67,7 @@ function NewFind(){
                 </div>
                 
             </div>
-            <div className='flex-col basis-[20%]'>
+            <div className='flex-col basis-[25%]'>
                 <Recommend/>
             </div>
         </div>
