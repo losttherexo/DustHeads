@@ -2,7 +2,6 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../reducers/userSlice'
 import Dusty from '../img/Dusty.png'
-import { addCopy } from '../reducers/copySlice'
 
 function NavBar() {
     const dispatch = useDispatch()
@@ -15,7 +14,7 @@ function NavBar() {
     }
 
     const handleNewFind = () => {
-      dispatch(addCopy())
+      navigate('/new-find')
     }
   
     return (
