@@ -5,10 +5,9 @@ import SearchBar from "./SearchBar"
 // import { useState } from "react"
 
 function Home(){
-    const dustheads = useSelector(s=>s.dustheads)
-    const records = useSelector(s=>s.records)
-    const user = useSelector(s=>s.user)
-    console.log(user)
+    // const dustheads = useSelector(s=>s.dustheads)
+    // const records = useSelector(s=>s.records)
+    // const user = useSelector(s=>s.user)
       
     return(
         <div className='flex w-full'>
