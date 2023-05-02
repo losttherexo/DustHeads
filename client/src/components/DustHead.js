@@ -38,8 +38,8 @@ function DustHead({id}) {
                 <NavBar/>
             </div>
             <div className='flex-col justify-center mx-6 basis-[55%] h-screen'>
-                <div className='flex flex-col mx-6 mb-4 mt-12'>
-                    <span className='text-6xl'>{dusthead.username}</span>
+                <div className='flex flex-col h-36 border-b'>
+                    <p className='text-6xl'>{dusthead.username}</p>
                     <div className='flex justify-between'>
                         <span className='flex items-center'>
                             {dusthead.bio}
@@ -49,7 +49,7 @@ function DustHead({id}) {
                         )}
                     </div>
                 </div>
-                <div className='mx-6 grid grid-cols-3'>
+                <div className='py-6 mx-2 grid grid-cols-3'>
                     {copyCards}
                 </div>
             </div>

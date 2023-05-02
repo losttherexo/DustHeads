@@ -5,6 +5,7 @@ function RecordCard({title, image, artist, genre, year}){
       <div className='flex flex-col w-full text-left'>
         <p className='border-b px-2 py-1'>{title} by {artist}</p>
         <p className='border-b px-2 py-1'>{genre}, {year}</p>
+        <p className='border-b px-2 py-1'>Ranking: 'insert number here'</p>
       </div>
     </div>
   )
