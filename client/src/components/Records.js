@@ -7,14 +7,7 @@ function Records() {
     
     const records = useSelector(s => s.records)
 
-    const recordCards = records.map(
-        r => <RecordCard 
-            key={r.id}
-            image={r.image} 
-            artist={r.artist} 
-            title={r.title} 
-        />
-    )
+    const recordCards = records.map(r => <RecordCard key={r.id} {...r}/>)
 
     return(
         <div className='flex'>
