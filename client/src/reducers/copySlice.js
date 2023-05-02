@@ -1,6 +1,12 @@
 const initialState = []
 
 export const addCopy = copy => {
+    return function(dispatch){
+        // fetch('/copies', {
+        //     method: 'POST'
+        // })
+        console.log('this works?')
+    }
     return {type:'copies/add', payload:copy}
 }
 
