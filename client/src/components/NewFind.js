@@ -5,8 +5,6 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import { useEffect } from "react"
-import { fetchUser } from "../reducers/userSlice"
 
 function NewFind(){
     const user = useSelector(s=>s.user)
@@ -24,23 +22,25 @@ function NewFind(){
             title: '',
             artist: '',
             description:'',
+            image:'',
         },
         validationSchema:formSchema,
         onSubmit: (values, {resetForm}) => {
             const record = records.find(record => 
-                record.title === values.title && record.artist === values.artist
+                record.title.toLowerCase() === values.title.toLowerCase() &&
+                record.artist.toLowerCase() === values.artist.toLowerCase()
             )
             if (!record) {
                 console.log('no record')
                 return
               }
             const updatedValues = {
-                descripion: values.description,
+                description: values.description,
                 dusthead_id: user.id,
-                record_id: record.id
+                record_id: record.id,
+                image: values.image
             }
-            console.log(updatedValues)
-            // dispatch(addCopy(updatedValues));
+            dispatch(addCopy(updatedValues));
             resetForm();
         }
     })
@@ -61,7 +61,7 @@ function NewFind(){
                             <label htmlFor='description' className='block mb-1 font-medium'>Description</label>
                             <textarea type='text' name='description' value={form.values.description} onChange={form.handleChange} className='w-full h-24 p-1 border border-gray-400 rounded-md mb-1 text-gray-800'/>
                             <button type='submit' className='self-center w-1/2 p-1.5 mt-2 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
-                                Save Changes
+                                Post Find
                             </button>
                         </form>    
                 </div>

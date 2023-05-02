@@ -187,6 +187,24 @@ class Copies(Resource):
         response = make_response(copies, 200)
         return response
     
+    def post(self):
+        data = request.get_json()
+        new_copy = Copy(
+            record_id = data['record_id'],
+            dusthead_id = data['dusthead_id'],
+            description = data['description'],
+            image = data['image']
+        )
+        try:
+            db.session.add(new_copy)
+            db.session.commit()
+        except ValueError:
+            db.session.rollback()
+            return make_response({'error': '400: Validation error.'}, 400)
+            
+        response = make_response(new_copy.to_dict(), 201)
+        return response
+    
 class CopiesByID(Resource):
     def get(self, id):
         copy = Copy.query.filter_by(id=id).first()

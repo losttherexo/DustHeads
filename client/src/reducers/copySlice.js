@@ -2,12 +2,22 @@ const initialState = []
 
 export const addCopy = copy => {
     return function(dispatch){
-        // fetch('/copies', {
-        //     method: 'POST'
-        // })
+        fetch('/copies', {
+            method: 'POST',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(copy) 
+        })
+        .then(r => {
+            if(r.ok){
+                r.json().then(copy => {
+                    dispatch({type: 'copies/add', payload:copy})
+                })
+            }else{
+                console.log('something went wrong')
+            }
+        })
         console.log('this works?')
     }
-    return {type:'copies/add', payload:copy}
 }
 
 export const fetchCopies = () => {
