@@ -29,8 +29,8 @@ function DustHead({id}) {
     const filteredCopies = copies.filter((c) => c.dusthead_id === id)
 
     const copyCards = filteredCopies.map((c) => (
-      <CopyCard key={c.id} title={c.record.title} image={c.record.image}/>
-    ));
+        <CopyCard key={c.id} {...c}/>
+));
 
    return(
         <div className='flex text-gray-300 h-screen'>

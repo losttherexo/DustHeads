@@ -54,7 +54,6 @@ class Copy(db.Model, SerializerMixin):
     __tablename__ = 'copies'
 
     serialize_rules = (
-        '-comments',
         '-dusthead.first_name',
         '-dusthead.last_name',
         '-dusthead.id',
