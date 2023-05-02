@@ -1,7 +1,10 @@
 import NavBar from "./NavBar"
 import Recommend from "./Recommend"
+import { useSelector } from "react-redux"
+import SearchBar from "./SearchBar"
 
 function Home(){
+
 
     return(
         <div className='flex w-full'>
@@ -12,6 +15,7 @@ function Home(){
                 these are our copy cards
             </div>
             <div className='flex-col basis-[20%]'>
+                <SearchBar/>
                 <Recommend/>
             </div>
         </div>
