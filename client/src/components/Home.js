@@ -23,9 +23,9 @@ function Home(){
     return(
         <div className='flex w-full'>
             <div className='flex-col basis-[20%]'>
-                <NavBar/>
+                    <NavBar/>
             </div>
-            <div className='sm:flex-row justify-center h-screen mx-6 basis-[55%]'>
+            <div className='flex-col justify-center mx-6 basis-[55%]'>
                 <div className='h-32 border-b flex items-center justify-center'>
                     <h1 className='text-3xl'>
                         maybe an animation or something fun
