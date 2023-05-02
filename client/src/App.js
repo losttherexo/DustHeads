@@ -32,7 +32,7 @@ function App() {
         <Route path='/new-find' element={<NewFind/>}/>
         {dustheads.map((dusthead) => (
           <Route 
-            key={dusthead.id} 
+            key={dusthead && dusthead.id} 
             path={`/${dusthead.username}`} 
             element={<DustHead id={dusthead.id}/>} 
           />
