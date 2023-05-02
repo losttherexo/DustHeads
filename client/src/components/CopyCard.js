@@ -1,15 +1,16 @@
-import { useState } from "react"
 
 function CopyCard({record, description}){
-  const [showDescription, setShowDescription] = useState(false)
+
+  const handleComments = () => {
+    console.log('hi')
+  }
 
   return (
-    <div className='relative flex items-center justify-center'
-      onMouseEnter={() => setShowDescription(true)}
-      onMouseLeave={() => setShowDescription(false)}
-    >
+    <div className='relative flex items-center justify-center'>
       <img src={record.image} alt={record.title}/>
-      {showDescription && <p className='absolute text-white px-4 py-2 rounded-md'>{description}</p>}
+      <button onClick={handleComments} className='h-full w-full absolute text-white bg-black bg-opacity-0 hover:bg-opacity-70 text-opacity-0 hover:text-opacity-100'>
+        {description? `"${description}"` : 'Comments'}
+      </button>
     </div>
   )
 }
