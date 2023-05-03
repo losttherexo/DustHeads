@@ -47,16 +47,24 @@ export const updateCopy = (values) => {
     }
 }
 
+export const deleteCopy = (id) => {
+    return function(dispatch){
+        fetch(`/copies/${id}`, {
+            method: 'DELETE'
+        })
+        dispatch({type: 'copies/remove', payload: null})
+    }
+}
+
 export const copyReducer = (state = initialState, action) => {
     switch(action.type){
         case 'copies/set':
-            /* assumes action.payload is an array of objects */
             return action.payload
         case 'copies/add':
-            /* assumes action.payload is an object */
             return [...state, action.payload]
         case 'copies/update':
-            /* assumes action.payload is an integer of a doomed ID */
+            return state.filter(uObj => uObj.id !== action.payload)
+        case 'copies/remove':
             return state.filter(rObj => rObj.id !== action.payload)
         default: return state
     }

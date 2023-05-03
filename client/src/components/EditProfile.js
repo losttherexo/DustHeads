@@ -15,14 +15,14 @@ function EditProfile() {
 
     const toggleModal = () => {
         setIsOpen(!isOpen)
-      }
+    }
 
     const formSchema = yup.object().shape({
         bio: yup.string(),
         username: yup.string(),
         email: yup.string(),
         password: yup.string()
-      })
+    })
     
     const form = useFormik({
         initialValues:{
@@ -45,14 +45,14 @@ function EditProfile() {
             dispatch(updateUser(updatedValues))
             resetForm()
             navigate(`/${user.username}`)
-          }
-      })
+        }
+    })
 
     const handleDelete = (id) => {
         dispatch(deleteUser(id))
         dispatch(fetchUser())
         navigate('/')
-      }
+    }
 
     return(
         <div className='h-screen flex text-gray-300'>

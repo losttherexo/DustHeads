@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { fetchCopies, updateCopy } from '../reducers/copySlice'
+import { fetchCopies, updateCopy, deleteCopy } from '../reducers/copySlice'
 import { useNavigate } from 'react-router-dom'
 
 function NewFindCard({id, record, dusthead, dusthead_id, description }) {
@@ -42,6 +42,12 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
     }
   })
 
+  const handleDelete = () => {
+    dispatch(deleteCopy(id))
+    dispatch(fetchCopies())
+    navigate('/home')
+  }
+
   const handleComment = () => {
     console.log('time to comment baby')
   }
@@ -73,6 +79,9 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
               <textarea type='text' name='description' value={form.values.description} onChange={form.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
               <button type='submit' className='w-2/3 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
                 Edit
+              </button>
+              <button onClick={handleDelete} className='self-center w-1/2 p-1.5 mt-2 text-white bg-red-700 rounded-md hover:bg-red-800'>
+                Delete Find
               </button>
               <button onClick={toggleEdit}>Nevermind</button>
             </form>      
