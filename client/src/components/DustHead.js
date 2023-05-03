@@ -26,7 +26,7 @@ function DustHead({id}) {
             </div>
             <div className='flex-col justify-center mx-6 basis-[55%] h-screen'>
                 <div className='flex flex-col h-36 border-b'>
-                    <p className='text-6xl'>{dusthead.username}</p>
+                    <p className='text-6xl'>{user? user.username : dusthead.username}</p>
                     <div className='flex justify-between'>
                         <span className='flex items-center'>
                             {user? user.bio : dusthead.bio}
