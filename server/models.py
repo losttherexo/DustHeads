@@ -70,6 +70,8 @@ class Copy(db.Model, SerializerMixin):
 
     record_id = db.Column(db.Integer, db.ForeignKey('records.id'), nullable=False)
     dusthead_id = db.Column(db.Integer, db.ForeignKey('dustheads.id'), nullable=False)
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     comments = db.relationship('Comment', backref='copy', lazy=True)
 
@@ -89,7 +91,8 @@ class Comment(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     
     body = db.Column(db.String(280), nullable=False)
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     dusthead_id = db.Column(db.Integer, db.ForeignKey('dustheads.id'), nullable=False)
     copy_id = db.Column(db.Integer, db.ForeignKey('copies.id'), nullable=False)
