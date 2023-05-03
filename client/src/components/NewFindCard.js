@@ -1,11 +1,34 @@
 import { useSelector } from 'react-redux'
+import * as yup from 'yup'
+import { useFormik } from 'formik'
+import { useState } from 'react'
 
-function NewFindCard({ record, dusthead, dusthead_id, description }) {
+function NewFindCard({id, record, dusthead, dusthead_id, description }) {
+  const [isOpen, setIsOpen] = useState(false)
   const user = useSelector((state) => state.user)
 
-  const handleEdit = () => {
-    console.log("let's get some work done")
+  const toggleEdit = () => {
+    setIsOpen(!isOpen)
   }
+
+  const formSchema = yup.object().shape({
+    description: yup.string()
+  })
+
+  const formik = useFormik({
+    initialValues:{
+      id: id,
+      description:'',
+    },
+    validationSchema:formSchema,
+    onSubmit:(values) => {
+      console.log(values)
+      // isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))
+      // if(user){
+      //   navigate('/home')
+      // }
+    }
+  })
 
   const handleComment = () => {
     console.log('time to comment baby')
@@ -18,7 +41,7 @@ function NewFindCard({ record, dusthead, dusthead_id, description }) {
                 <p className='mx-3 py-2 flex flex-row h-[30%]'>
                     @{dusthead.username}                 
                     {user && dusthead_id === user.id && (
-                        <button onClick={handleEdit} className=' mx-2'>
+                        <button onClick={toggleEdit} className=' mx-2'>
                         •••</button>
                     )} 
                 </p>
@@ -31,7 +54,20 @@ function NewFindCard({ record, dusthead, dusthead_id, description }) {
         <div>
             <img src={record.image} alt={record.title} className='flex w-44 justify-center p-3' />
         </div>
+        {isOpen && (
+          <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center text-black">
+            <form onSubmit={formik.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-20 text-center'>
+              <label htmlFor='description' className='block mb-1 font-medium'>Description</label>
+              <textarea type='text' name='description' value={formik.values.description} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
+              <button type='submit' className='w-2/3 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
+                Edit
+              </button>
+              <button onClick={toggleEdit}>Nevermind</button>
+            </form>      
+          </div>
+            )}
     </div>
+    
   )
 }
 
