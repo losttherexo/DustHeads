@@ -16,7 +16,6 @@ export const addCopy = copy => {
                 console.log('something went wrong')
             }
         })
-        console.log('this works?')
     }
 }
 
