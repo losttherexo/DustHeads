@@ -56,13 +56,14 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
     <div className='border flex flex-row my-4 h-44 text-gray-300 rounded-md justify-between'>
         <div>
             <div className='h-[75%]'>
-                <p className='mx-3 py-2 flex flex-row h-[30%]'>
-                    @{dusthead.username}                 
-                    {user && dusthead_id === user.id && (
-                        <button onClick={toggleEdit} className=' mx-2'>
-                        •••</button>
-                    )} 
-                </p>
+              <div className='flex flex-row'>
+                <button onClick={() => navigate(`/${dusthead.username}`)} className='ml-3 py-2 flex flex-row h-[30%]'>
+                  @{dusthead.username}                 
+                </button>
+                {user && dusthead_id === user.id && (
+                  <button onClick={toggleEdit} className=' mx-2'>•••</button>
+                )} 
+              </div>
                 <p className='mx-3 mt-1 h-[60%]'>{description}</p>
             </div>
             <div className='h-[25%] flex items-center'>
