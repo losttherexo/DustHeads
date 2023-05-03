@@ -34,10 +34,10 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
           delete updatedValues[key]
         }
       }
+      toggleEdit()
+      resetForm()
       dispatch(updateCopy(updatedValues))
       dispatch(fetchCopies())
-      resetForm()
-      toggleEdit()
       navigate('/home')
     }
   })
