@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom"
 
 function AddRecord(){
     const user = useSelector(s=>s.user)
-    const records = useSelector(s=>s.records)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -41,25 +40,25 @@ function AddRecord(){
                 year: values.year,
                 image: values.image
             }
-            dispatch(addRecord(recordObj))
-            
-            // const record = records.find(record => 
-            //     record.title.toLowerCase() === values.title.toLowerCase() &&
-            //     record.artist.toLowerCase() === values.artist.toLowerCase()
-            // )
-            // console.log(values)
-            // if (!record) {
-            // } else{
-            //     const findObj = {
-            //         description: values.description,
-            //         dusthead_id: user.id,
-            //         record_id: record.id,
-            //         image: values.image
-            //     }
-                // dispatch(addCopy(updatedValues))
-                // resetForm()
-                // navigate('/home')
-            // }
+            fetch('/records', {
+                method:'POST',
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify(recordObj)
+            })
+            .then(r=> {
+                if(r.ok){
+                    r.json().then(r => {
+                        dispatch(addRecord(r))
+                        const copyObj = {
+                            dusthead_id: user.id,
+                            record_id: r.id,
+                            image: values.image,
+                            description:values.description
+                        }
+                        dispatch(addCopy(copyObj))
+                    })
+                }
+            })
         }
     })
       

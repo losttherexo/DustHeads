@@ -1,20 +1,8 @@
 const initialState = []
 
 export const addRecord = newRecordObj => {
-    console.log(newRecordObj)
     return function(dispatch){
-        fetch('/records', {
-            method:'POST',
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify(newRecordObj)
-        })
-        .then(r=> {
-            if(r.ok){
-                r.json().then(r => {
-                    dispatch({type:'records/add', payload: r})
-                })
-            }
-        })
+        dispatch({type:'records/add', payload: newRecordObj})
     }
 }
 
