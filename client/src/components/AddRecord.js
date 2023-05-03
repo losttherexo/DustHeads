@@ -7,7 +7,6 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../reducers/recordSlice"
 import { useNavigate } from "react-router-dom"
-import { fetchUser } from "../reducers/userSlice"
 
 function AddRecord(){
     const user = useSelector(s=>s.user)
@@ -35,23 +34,32 @@ function AddRecord(){
         },
         validationSchema:formSchema,
         onSubmit: (values, {resetForm}) => {
-            const record = records.find(record => 
-                record.title.toLowerCase() === values.title.toLowerCase() &&
-                record.artist.toLowerCase() === values.artist.toLowerCase()
-            )
-            console.log(values)
-            if (!record) {
-            } else{
-                const updatedValues = {
-                    description: values.description,
-                    dusthead_id: user.id,
-                    record_id: record.id,
-                    image: values.image
-                }
+            const recordObj = {
+                title: values.title,
+                artist: values.artist,
+                genre: values.genre,
+                year: values.year,
+                image: values.image
+            }
+            dispatch(addRecord(recordObj))
+            
+            // const record = records.find(record => 
+            //     record.title.toLowerCase() === values.title.toLowerCase() &&
+            //     record.artist.toLowerCase() === values.artist.toLowerCase()
+            // )
+            // console.log(values)
+            // if (!record) {
+            // } else{
+            //     const findObj = {
+            //         description: values.description,
+            //         dusthead_id: user.id,
+            //         record_id: record.id,
+            //         image: values.image
+            //     }
                 // dispatch(addCopy(updatedValues))
                 // resetForm()
                 // navigate('/home')
-            }
+            // }
         }
     })
       
