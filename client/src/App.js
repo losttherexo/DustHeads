@@ -11,6 +11,7 @@ import { fetchDustHeads } from './reducers/dustheadSlice';
 import EditProfile from './components/EditProfile';
 import NewFind from './components/NewFind';
 import { fetchCopies } from './reducers/copySlice';
+import AddRecord from './components/AddRecord';
 
 function App() {
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ function App() {
         <Route path='/records' element={<Records/>}/>
         <Route path='/edit-account' element={<EditProfile/>}/>
         <Route path='/new-find' element={<NewFind/>}/>
+        <Route path='/add-record' element={<AddRecord/>}/>
         {dustheads.map((dusthead) => (
           <Route 
             key={dusthead && dusthead.id} 

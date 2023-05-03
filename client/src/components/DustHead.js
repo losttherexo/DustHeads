@@ -1,28 +1,19 @@
 import { useNavigate } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import NavBar from "./NavBar"
 import CopyCard from "./CopyCard"
 import Recommend from "./Recommend"
-import { useEffect } from "react"
-import { fetchUser } from "../reducers/userSlice"
 
 
 function DustHead({id}) {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
     const dh = useSelector(s => s.dustheads)
     const user = useSelector(s => s.user)
     const dusthead = dh.find((d) => d.id === id)
 
-    useEffect(()=>{
-        dispatch(fetchUser())
-    }, [dispatch])
-
     const editProfile = () => {
         navigate('/edit-account')
     };
-
-    console.log(user.copies)
 
     const copyCards = user && (user == dusthead)
     ? user.copies.map((c) => <CopyCard key={c.id} {...c}/>)
