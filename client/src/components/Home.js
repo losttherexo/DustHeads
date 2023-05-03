@@ -3,20 +3,8 @@ import Recommend from "./Recommend"
 import { useSelector } from "react-redux"
 import SearchBar from "./SearchBar"
 import NewFindCard from "./NewFindCard"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { fetchUser } from "../reducers/userSlice"
-import { fetchCopies } from "../reducers/copySlice"
-// import { useState } from "react"
 
 function Home(){
-    const user = useSelector(s=>s.user)
-
-    const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(fetchCopies())
-    },[dispatch])
-
     const copies = useSelector(s => s.copies)
 
     const newFindCards = copies.map(c => <NewFindCard key={c.id} {...c}/>)

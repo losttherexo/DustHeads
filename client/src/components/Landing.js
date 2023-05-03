@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser, loginUser, signupUser } from '../reducers/userSlice';
+import { loginUser, signupUser } from '../reducers/userSlice';
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import Dusty from '../img/Dusty.png'

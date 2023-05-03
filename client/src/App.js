@@ -10,6 +10,7 @@ import Records from './components/Records';
 import { fetchDustHeads } from './reducers/dustheadSlice';
 import EditProfile from './components/EditProfile';
 import NewFind from './components/NewFind';
+import { fetchCopies } from './reducers/copySlice';
 
 function App() {
   const dispatch = useDispatch()
@@ -20,6 +21,7 @@ function App() {
     dispatch(fetchUser())
     dispatch(fetchDustHeads())
     dispatch(fetchRecords())
+    dispatch(fetchCopies())
   },[dispatch]) 
 
   return (
