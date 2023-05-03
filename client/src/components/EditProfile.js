@@ -42,8 +42,8 @@ function EditProfile() {
                 delete updatedValues[key]
               }
             }
-            dispatch(updateUser(updatedValues))
             resetForm()
+            dispatch(updateUser(updatedValues))
             navigate(`/${user.username}`)
         }
     })

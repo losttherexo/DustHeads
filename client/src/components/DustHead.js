@@ -29,7 +29,7 @@ function DustHead({id}) {
                     <p className='text-6xl'>{dusthead.username}</p>
                     <div className='flex justify-between'>
                         <span className='flex items-center'>
-                            {dusthead.bio}
+                            {user? user.bio : dusthead.bio}
                         </span>
                         {user&& dusthead.id === user.id && (
                             <button onClick={editProfile} className='mx-2 py-2 px-4 font-bold bg-slate-500 hover:bg-black rounded-3xl'>Edit Profile</button>
