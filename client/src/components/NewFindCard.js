@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { useState } from 'react'
+import { updateCopy } from '../reducers/copySlice'
+
 
 function NewFindCard({id, record, dusthead, dusthead_id, description }) {
   const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
 
   const toggleEdit = () => {
@@ -15,18 +18,24 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
     description: yup.string()
   })
 
-  const formik = useFormik({
+  const form = useFormik({
     initialValues:{
-      id: id,
       description:'',
     },
     validationSchema:formSchema,
-    onSubmit:(values) => {
-      console.log(values)
-      // isOpen? dispatch(signupUser(values)) : dispatch(loginUser(values))
-      // if(user){
-      //   navigate('/home')
-      // }
+    onSubmit: (values,) => {
+      const updatedValues = {
+        ...values,
+        id: id
+      }
+      for (const key in values) {
+        if (values[key] === form.initialValues[key]) {
+          delete updatedValues[key]
+        }
+      }
+      console.log(updatedValues)
+      dispatch(updateCopy(updatedValues))
+
     }
   })
 
@@ -56,9 +65,9 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
         </div>
         {isOpen && (
           <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center text-black">
-            <form onSubmit={formik.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-20 text-center'>
+            <form onSubmit={form.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-20 text-center'>
               <label htmlFor='description' className='block mb-1 font-medium'>Description</label>
-              <textarea type='text' name='description' value={formik.values.description} onChange={formik.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
+              <textarea type='text' name='description' value={form.values.description} onChange={form.handleChange} className='w-2/3 p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
               <button type='submit' className='w-2/3 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
                 Edit
               </button>

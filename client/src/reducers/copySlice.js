@@ -30,6 +30,23 @@ export const fetchCopies = () => {
     }
 }
 
+export const updateCopy = (values) => {
+    return function(dispatch){
+        fetch(`/copies/${values.id}`, {
+            method:'PATCH',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(values)
+        })
+        .then(r => {
+            if(r.ok){
+                r.json().then(copy => {
+                    dispatch({type: 'copies/set', payload:copy})
+                })
+            }
+        })
+    }
+}
+
 export const copyReducer = (state = initialState, action) => {
     switch(action.type){
         case 'copies/set':

@@ -36,13 +36,13 @@ function EditProfile() {
             const updatedValues = {
               ...values,
               id: user.id
-            };
+            }
             for (const key in values) {
               if (values[key] === form.initialValues[key]) {
-                delete updatedValues[key];
+                delete updatedValues[key]
               }
             }
-            dispatch(updateUser(updatedValues));
+            dispatch(updateUser(updatedValues))
             resetForm();
             navigate(`/${user.username}`)
           }
