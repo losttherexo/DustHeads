@@ -10,9 +10,10 @@ import { fetchCopies } from "../reducers/copySlice"
 // import { useState } from "react"
 
 function Home(){
+    const user = useSelector(s=>s.user)
+
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(fetchUser())
         dispatch(fetchCopies())
     },[dispatch])
 

@@ -6,7 +6,7 @@ from config import db, bcrypt
 class DustHead(db.Model, SerializerMixin):
     __tablename__ = 'dustheads'
 
-    serialize_rules = ('-copies', '-comments')
+    serialize_rules = ('-copies.dusthead', '-comments.dusthead')
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
