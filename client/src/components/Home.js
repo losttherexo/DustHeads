@@ -5,7 +5,10 @@ import SearchBar from "./SearchBar"
 import NewFindCard from "./NewFindCard"
 
 function Home(){
+
     const copies = useSelector(s => s.copies)
+
+    console.log(copies)
 
     const newFindCards = copies.map(c => <NewFindCard key={c.id} {...c}/>)
       
