@@ -61,13 +61,12 @@ export const copyReducer = (state = initialState, action) => {
             return action.payload
         case 'copies/add':
             return [...state, action.payload]
-        case 'copies/update':
+        case "copies/update":
             return state.map(copy => {
-                if (copy.id == action.payload.id) {
+                if (copy.id === action.payload.id) {
                     return action.payload
-                } else {
-                    return copy
                 }
+                return copy
             })
         case 'copies/remove':
             return state.filter(rObj => rObj.id !== action.payload)
