@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
+import { addRecord } from "../reducers/recordSlice"
 
 function NewFind(){
     const user = useSelector(s=>s.user)
@@ -23,6 +24,8 @@ function NewFind(){
             artist: '',
             description:'',
             image:'',
+            genre:'',
+            year: '',
         },
         validationSchema:formSchema,
         onSubmit: (values, {resetForm}) => {
@@ -30,10 +33,20 @@ function NewFind(){
                 record.title.toLowerCase() === values.title.toLowerCase() &&
                 record.artist.toLowerCase() === values.artist.toLowerCase()
             )
+            
             if (!record) {
+                const newValues = {
+                    title: values.title,
+                    artist: values.artist,
+                    genre: values.genre,
+                    year: values.year,
+                    image: values.image,
+                }
+                dispatch(addRecord(newValues))
                 console.log('no record')
                 return
               }
+
             const updatedValues = {
                 description: values.description,
                 dusthead_id: user.id,

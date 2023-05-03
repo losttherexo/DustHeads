@@ -1,7 +1,7 @@
 const initialState = []
 
 export const addRecord = newRecordObj => {
-    return {type:'records/add', payload:newRecordObj}
+    console.log(newRecordObj)
 }
 
 export const fetchRecords = () => {
