@@ -43,7 +43,7 @@ function EditProfile() {
               }
             }
             dispatch(updateUser(updatedValues))
-            resetForm();
+            resetForm()
             navigate(`/${user.username}`)
           }
       })

@@ -2,12 +2,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { updateCopy } from '../reducers/copySlice'
-
+import { fetchCopies, updateCopy } from '../reducers/copySlice'
+import { useNavigate } from 'react-router-dom'
 
 function NewFindCard({id, record, dusthead, dusthead_id, description }) {
   const [isOpen, setIsOpen] = useState(false)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const user = useSelector((state) => state.user)
 
   const toggleEdit = () => {
@@ -23,7 +24,7 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
       description:'',
     },
     validationSchema:formSchema,
-    onSubmit: (values,) => {
+    onSubmit: (values, {resetForm}) => {
       const updatedValues = {
         ...values,
         id: id
@@ -33,9 +34,11 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
           delete updatedValues[key]
         }
       }
-      console.log(updatedValues)
       dispatch(updateCopy(updatedValues))
-
+      dispatch(fetchCopies())
+      resetForm()
+      toggleEdit()
+      navigate('/home')
     }
   })
 

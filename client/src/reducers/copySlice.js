@@ -39,8 +39,8 @@ export const updateCopy = (values) => {
         })
         .then(r => {
             if(r.ok){
-                r.json().then(copy => {
-                    dispatch({type: 'copies/set', payload:copy})
+                r.json().then(user => {
+                    dispatch({type: 'copies/update', payload:user})
                 })
             }
         })
@@ -55,7 +55,7 @@ export const copyReducer = (state = initialState, action) => {
         case 'copies/add':
             /* assumes action.payload is an object */
             return [...state, action.payload]
-        case 'copies/remove':
+        case 'copies/update':
             /* assumes action.payload is an integer of a doomed ID */
             return state.filter(rObj => rObj.id !== action.payload)
         default: return state
