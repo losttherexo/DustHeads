@@ -39,7 +39,9 @@ export const updateCopy = (values) => {
         .then(r => {
             if(r.ok){
                 r.json().then(copy => {
+                    console.log(copy)
                     dispatch({type: 'copies/update', payload:copy})
+                    // dispatch(fetchCopies())
                 })
             }
         })
@@ -51,7 +53,7 @@ export const deleteCopy = (id) => {
         fetch(`/copies/${id}`, {
             method: 'DELETE'
         })
-        dispatch({type: 'copies/remove', payload: null})
+        dispatch({type: 'copies/remove', payload: id})
     }
 }
 
@@ -64,12 +66,13 @@ export const copyReducer = (state = initialState, action) => {
         case "copies/update":
             return state.map(copy => {
                 if (copy.id === action.payload.id) {
-                    return action.payload
+                return {...copy, ...action.payload}
                 }
                 return copy
             })
         case 'copies/remove':
-            return state.filter(rObj => rObj.id !== action.payload)
-        default: return state
+            return state.filter(copy => copy.id !== action.payload)
+        default:
+            return state
     }
 }

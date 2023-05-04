@@ -37,13 +37,12 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
       dispatch(updateCopy(updatedValues))
       toggleEdit()
       resetForm()
-      dispatch(fetchCopies())
     }
   })
 
   const handleDelete = () => {
     dispatch(deleteCopy(id))
-    dispatch(fetchCopies())
+    dispatch(fetchCopies)
     navigate('/home')
   }
 
@@ -80,11 +79,11 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
               <button type='submit' className='w-2/3 mt-2 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
                 Edit
               </button>
+            </form>      
               <button onClick={handleDelete} className='self-center w-2/3 p-1.5 mt-2 text-white bg-red-700 rounded-md hover:bg-red-800'>
                 Delete Find
               </button>
               <button onClick={toggleEdit}>Nevermind</button>
-            </form>      
           </div>
             )}
     </div>

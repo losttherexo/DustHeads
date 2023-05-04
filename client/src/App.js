@@ -23,7 +23,7 @@ function App() {
     dispatch(fetchDustHeads())
     dispatch(fetchRecords())
     dispatch(fetchCopies())
-  },[dispatch]) 
+  },[]) 
 
   return (
     <>
