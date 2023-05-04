@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import NavBar from "./NavBar"
 import CopyCard from "./CopyCard"
 import Recommend from "./Recommend"
+import SearchBar from "./SearchBar"
 
 
 function DustHead({id}) {
@@ -42,7 +43,8 @@ function DustHead({id}) {
                 </div>
             </div>
             <div className='flex-col basis-[25%]'>
-                <Recommend/>
+                <SearchBar/>
+                {/* <Recommend/> */}
             </div>
         </div>
     )

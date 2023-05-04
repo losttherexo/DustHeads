@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import { deleteUser, updateUser, fetchUser } from "../reducers/userSlice"
 import * as yup from 'yup'
 import { useState } from "react"
+import SearchBar from "./SearchBar"
 
 function EditProfile() {
     const [isOpen, setIsOpen] = useState(false);
@@ -92,7 +93,8 @@ function EditProfile() {
                 )}
             </div>
             <div className='flex-col basis-[25%]'>
-                <Recommend/>
+                <SearchBar/>
+                {/* <Recommend/> */}
             </div>
         </div>
     )

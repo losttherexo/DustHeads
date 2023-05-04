@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import RecordCard from "./RecordCard";
 import NavBar from './NavBar';
 import Recommend from './Recommend';
+import SearchBar from './SearchBar';
 
 function Records() {
     
@@ -23,9 +24,9 @@ function Records() {
                 </div>
             </div>
             <div className='flex-col basis-[25%]'>
-                <Recommend/>
+                <SearchBar/>
+                {/* <Recommend/> */}
             </div>
-
         </div>
     )
 }

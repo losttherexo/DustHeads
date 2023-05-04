@@ -7,6 +7,7 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import SearchBar from "./SearchBar"
 
 function NewFind(){
     const [isOpen, setIsOpen] = useState(false)
@@ -83,7 +84,8 @@ function NewFind(){
                 )}
             </div>
             <div className='flex-col basis-[25%]'>
-                <Recommend/>
+                <SearchBar/>
+                {/* <Recommend/> */}
             </div>
         </div>
     )

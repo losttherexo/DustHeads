@@ -7,6 +7,7 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { addRecord } from "../reducers/recordSlice"
 import { useNavigate } from "react-router-dom"
+import SearchBar from "./SearchBar"
 
 function AddRecord(){
     const user = useSelector(s=>s.user)
@@ -90,7 +91,8 @@ function AddRecord(){
                 </div>
             </div>
             <div className='flex-col basis-[25%]'>
-                <Recommend/>
+                <SearchBar/>
+                {/* <Recommend/> */}
             </div>
         </div>
     )
