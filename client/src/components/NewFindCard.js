@@ -73,17 +73,19 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
         </div>
         {isOpen && (
           <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center text-black">
-            <form onSubmit={form.handleSubmit} className='flex flex-col items-center bg-white rounded shadow py-4 px-20 text-center'>
-              <label htmlFor='description' className='block mb-1 font-medium'>Description</label>
-              <textarea type='text' name='description' value={form.values.description} onChange={form.handleChange} className='p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
-              <button type='submit' className='w-2/3 mt-2 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
-                Edit
-              </button>
-            </form>      
-              <button onClick={handleDelete} className='self-center w-2/3 p-1.5 mt-2 text-white bg-red-700 rounded-md hover:bg-red-800'>
+            <div className='flex flex-col bg-white rounded shadow'>
+              <form onSubmit={form.handleSubmit} className='flex flex-col items-center pt-4 pb-2 px-20 text-center'>
+                <label htmlFor='description' className='block mb-1 font-medium'>Description</label>
+                <textarea type='text' name='description' value={form.values.description} onChange={form.handleChange} className='p-1 border border-gray-400 rounded-md mb-1 text-gray-800' />
+                <button type='submit' className='w-2/3 mt-2 p-1.5 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
+                  Edit
+                </button>
+              </form>      
+              <button onClick={handleDelete} className='self-center w-[37%] px-2 py-1.5 text-white bg-red-700 rounded-md hover:bg-red-800'>
                 Delete Find
               </button>
-              <button onClick={toggleEdit}>Nevermind</button>
+              <button onClick={toggleEdit} className='py-2'>Nevermind</button>
+            </div>
           </div>
             )}
     </div>
