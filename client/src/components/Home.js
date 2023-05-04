@@ -31,7 +31,7 @@ function Home(){
                 </div>
             </div>
             <div className='flex-col basis-[25%]'>
-                {/* <SearchBar/> */}
+                <SearchBar/>
                 <Recommend/>
             </div>
         </div>

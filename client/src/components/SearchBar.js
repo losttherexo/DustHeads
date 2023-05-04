@@ -1,16 +1,19 @@
-function SearchBar({onSearch}) {
+import { useSelector } from "react-redux";
+
+function SearchBar() {
+  const records = useSelector(s=>s.records)
+  const dustheads = useSelector(s=>s.dustheads)
 
   function handleChange(e) {
-    // onSearch(e.target.value)
   }
 
   return (
-    <div className='hidden md:flex border-l pt-4 justify-center'>
+    <div className='hidden md:flex border-l border-b py-4 justify-center'>
       <input
-        type="text"
-        placeholder="Search"
+        type='text'
+        placeholder='Search'
         onChange={handleChange}
-        className='mx-2'
+        className='mx-2 rounded-lg'
       />
     </div>
   );

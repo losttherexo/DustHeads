@@ -39,9 +39,7 @@ export const updateCopy = (values) => {
         .then(r => {
             if(r.ok){
                 r.json().then(copy => {
-                    console.log(copy)
                     dispatch({type: 'copies/update', payload:copy})
-                    // dispatch(fetchCopies())
                 })
             }
         })
