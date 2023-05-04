@@ -7,7 +7,6 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { fetchUser } from "../reducers/userSlice"
 
 function NewFind(){
     const [isOpen, setIsOpen] = useState(false)
@@ -46,7 +45,6 @@ function NewFind(){
                     image: values.image
                 }
                 dispatch(addCopy(updatedValues))
-                dispatch(fetchUser())
                 resetForm()
                 navigate('/home')
             }
