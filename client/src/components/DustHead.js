@@ -15,16 +15,17 @@ function DustHead({id}) {
         navigate('/edit-account')
     };
 
-    const copyCards = user && (user == dusthead)
-    ? user.copies.map((c) => <CopyCard key={c.id} {...c}/>)
-    : dusthead.copies.map((c) => <CopyCard key={c.id} {...c}/>)
+    const copyCards = user && (user === dusthead)
+    ? user.copies.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((c) => <CopyCard key={c.id} {...c}/>)
+    : dusthead.copies.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((c) => <CopyCard key={c.id} {...c}/>);
+
 
    return(
         <div className='flex text-gray-300'>
             <div className='flex-col basis-[20%]'>   
                 <NavBar/>
             </div>
-            <div className='flex-col justify-center mx-6 basis-[55%] h-screen'>
+            <div className='flex-col justify-center mx-6 basis-[55%]'>
                 <div className='flex flex-col-reverse h-36 border-b'>
                     <div className='flex justify-between h-[35%]'>
                         <span className='flex items-center'>

@@ -7,7 +7,13 @@ import NewFindCard from "./NewFindCard"
 function Home(){
     const copies = useSelector(s => s.copies)
 
-    const newFindCards = copies.map(c => <NewFindCard key={c.id} {...c}/>)
+    const sortedCopies = copies.sort((a, b) =>
+        new Date(b.updated_at) - new Date(a.updated_at)
+    )
+
+  const newFindCards = sortedCopies.map((c) => (
+        <NewFindCard key={c.id} {...c} />
+    ))
       
     return(
         <div className='flex w-full'>
