@@ -25,16 +25,16 @@ function DustHead({id}) {
                 <NavBar/>
             </div>
             <div className='flex-col justify-center mx-6 basis-[55%] h-screen'>
-                <div className='flex flex-col h-36 border-b'>
-                    <p className='text-6xl'>{user? user.username : dusthead.username}</p>
-                    <div className='flex justify-between'>
+                <div className='flex flex-col-reverse h-36 border-b'>
+                    <div className='flex justify-between h-[35%]'>
                         <span className='flex items-center'>
                             {user? user.bio : dusthead.bio}
                         </span>
                         {user&& dusthead.id === user.id && (
-                            <button onClick={editProfile} className='mx-2 py-2 px-4 font-bold bg-slate-500 hover:bg-black rounded-3xl'>Edit Profile</button>
+                            <button onClick={editProfile} className='my-2 py-1 px-4 font-bold bg-slate-500 hover:bg-black rounded-3xl'>Edit Profile</button>
                         )}
                     </div>
+                    <p className='text-6xl'>{dusthead.username}</p>
                 </div>
                 <div className='py-6 mx-2 grid grid-cols-3'>
                     {copyCards}
