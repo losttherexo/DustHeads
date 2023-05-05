@@ -9,8 +9,10 @@ function NavBar() {
     const user = useSelector((s) => s.user)
   
     const handleLogout = () => {
-      dispatch(logoutUser())
-      navigate('/')
+      if (user){
+        dispatch(logoutUser())
+        navigate('/')
+      } else navigate('/')
     }
 
     const handleNewFind = () => {
@@ -44,7 +46,7 @@ function NavBar() {
             onClick={handleLogout}
             className='border rounded-sm my-8 text-xl py-1 px-4 hover:text-white hover:bg-black absolute bottom-0'
           >
-            Logout
+            {user? 'Logout' : 'Login'}
           </button>
         </div>
       </div>

@@ -22,11 +22,11 @@ function DustHead({id}) {
 
 
    return(
-        <div className='flex text-gray-300'>
+        <div className='flex'>
             <div className='flex-col basis-[20%]'>   
                 <NavBar/>
             </div>
-            <div className='flex-col justify-center mx-6 basis-[55%]'>
+            <div className='flex-col justify-center mx-6 basis-[55%] text-gray-300'>
                 <div className='flex flex-col-reverse h-36 border-b'>
                     <div className='flex justify-between h-[35%]'>
                         <span className='flex items-center'>

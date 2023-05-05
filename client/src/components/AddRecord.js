@@ -14,6 +14,10 @@ function AddRecord(){
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    if (!user){
+        navigate('/')
+    }
+
     const formSchema = yup.object().shape({
         title: yup.string(),
         artist: yup.string(),
@@ -64,11 +68,11 @@ function AddRecord(){
     })
       
     return(
-        <div className='h-screen flex text-gray-300'>
+        <div className='h-screen flex'>
             <div className='flex-col basis-[20%]'>   
                 <NavBar/>
             </div>
-            <div className='justify-center mx-6 basis-[55%] mb-4 mt-12'>
+            <div className='justify-center mx-6 basis-[55%] mb-4 mt-12 text-gray-300'>
                 <span className='mx-6  text-6xl'>Add Record</span>
                 <div className='flex flex-col pt-28 justify-between'>
                         <form onSubmit={findForm.handleSubmit} className='flex flex-col w-3/4 self-center py-4 text-left'>
