@@ -1,5 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.declarative import declared_attr
+from sqlalchemy import CheckConstraint
 from datetime import datetime
 from config import db, bcrypt
 
@@ -15,7 +17,7 @@ class DustHead(db.Model, SerializerMixin):
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))
     bio = db.Column(db.String(280))
-    admin = db.Column(db.String, default=False)
+    _admin = db.Column(db.String, default=False)
 
     copies = db.relationship('Copy', backref='dusthead', lazy=True, cascade='all, delete')
     comments = db.relationship('Comment', backref='dusthead', lazy=True, cascade='all, delete')
@@ -48,6 +50,29 @@ class Record(db.Model, SerializerMixin):
     image = db.Column(db.String, nullable=False)
 
     copies = db.relationship('Copy', backref='record', lazy=True)
+
+    @declared_attr
+    def __table_args__(cls):
+        return (
+            CheckConstraint(cls.genre.in_(('Rock', 'Pop', 'Hip-hop', 'Jazz', 'Classical', 'Alternative',
+             'R&B', 'Soul', 'Dance', 'Electronic', 'Indie', 'Soundtrack', 'World'))),
+        )
+
+    def validate_genre(self):
+        valid_genres = ('Rock', 'Pop', 'Hip-hop', 'Jazz', 'Classical', 'Alternative',
+         'R&B', 'Soul', 'Dance', 'Electronic', 'Indie', 'Soundtrack', 'World')
+        if self.genre not in valid_genres:
+            raise ValueError('Invalid genre')
+
+    __table_args__ = (
+        db.UniqueConstraint('title', 'artist', name='_title_artist_uc'),
+    )
+
+    __mapper_args__ = {
+        'validate': [
+            db.validates('genre')(validate_genre)
+        ]
+    }
 
 
 class Copy(db.Model, SerializerMixin):
