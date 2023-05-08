@@ -113,6 +113,8 @@ class DustHeadsByID(Resource):
         data = request.get_json()
         for key in data.keys():
             setattr(dh, key, data[key])
+        if 'password' in data:
+            dh.password_hash = data['password']
         db.session.add(dh)
         db.session.commit()
         return make_response(dh.to_dict(), 200)
