@@ -17,7 +17,7 @@ class DustHead(db.Model, SerializerMixin):
     first_name = db.Column(db.String(32))
     last_name = db.Column(db.String(32))
     bio = db.Column(db.String(280))
-    _admin = db.Column(db.String, default=False)
+    admin = db.Column(db.String, default=False)
 
     copies = db.relationship('Copy', backref='dusthead', lazy=True, cascade='all, delete')
     comments = db.relationship('Comment', backref='dusthead', lazy=True, cascade='all, delete')
@@ -67,12 +67,6 @@ class Record(db.Model, SerializerMixin):
     __table_args__ = (
         db.UniqueConstraint('title', 'artist', name='_title_artist_uc'),
     )
-
-    __mapper_args__ = {
-        'validate': [
-            db.validates('genre')(validate_genre)
-        ]
-    }
 
 
 class Copy(db.Model, SerializerMixin):
