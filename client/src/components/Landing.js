@@ -20,8 +20,15 @@ function Landing() {
 
   const formSchema = yup.object().shape({
     username: yup.string().required('Username Required'),
-    email: yup.string().email(),
-    password: yup.string().required('Password Required')
+    email: yup.string().email('Invalid email'),
+    password: yup.string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters')
+    .max(16, 'Password must be at most 16 characters')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/,
+      'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
+    ),
   })
 
   const formik = useFormik({
@@ -52,7 +59,8 @@ function Landing() {
           </h1>
           <form onSubmit={formik.handleSubmit} className='flex flex-col items-center'>
             <label htmlFor='username' className='block mb-2 font-medium'>Username</label>
-            <input type='text' name='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' />
+            <input type='text' name='username' autoComplete='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' />
+            <p style={{ color: "red" }}> {formik.errors.username}</p>
             <label htmlFor='password' className='block mb-2 font-medium'>Password</label>
             <input type='password' name='password' value={formik.values.password} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' />
             <button type='submit' className='w-2/3 px-4 py-2 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
