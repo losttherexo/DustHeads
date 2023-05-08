@@ -8,6 +8,7 @@ import Dusty from '../img/Dusty.png'
 import Vinyl from '../img/Vinyl.png'
 import Home from './Home';
 
+
 function Landing() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
@@ -59,10 +60,11 @@ function Landing() {
           </h1>
           <form onSubmit={formik.handleSubmit} className='flex flex-col items-center'>
             <label htmlFor='username' className='block mb-2 font-medium'>Username</label>
-            <input type='text' name='username' autoComplete='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' />
-            <p style={{ color: "red" }}> {formik.errors.username}</p>
+            <input type='text' name='username' autoComplete='username' value={formik.values.username} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md text-gray-800' />
+            <p className='text-red-600 my-2'> {formik.errors.username? formik.errors.username : <br/>}</p>
             <label htmlFor='password' className='block mb-2 font-medium'>Password</label>
-            <input type='password' name='password' value={formik.values.password} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md mb-4 text-gray-800' />
+            <input type='password' name='password' value={formik.values.password} onChange={formik.handleChange} className='w-2/3 p-2 border border-gray-400 rounded-md mb- text-gray-800' />
+            <p className='text-red-600 my-2'> {formik.errors.password? formik.errors.password : <br/>}</p>
             <button type='submit' className='w-2/3 px-4 py-2 text-white bg-gray-900 rounded-md hover:bg-gray-800'>
               Log In
             </button>
