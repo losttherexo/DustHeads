@@ -54,15 +54,15 @@ class Record(db.Model, SerializerMixin):
     @declared_attr
     def __table_args__(cls):
         return (
-            CheckConstraint(cls.genre.in_(('Rock', 'Pop', 'Hip-hop', 'Jazz', 'Classical', 'Alternative',
-             'R&B', 'Soul', 'Dance', 'Electronic', 'Indie', 'Soundtrack', 'World', 'Rap', 'Punk',
-              'Metal', 'Singer/Songwriter', 'Country/Western', 'Folk', 'K-Pop'))),
+            CheckConstraint(cls.genre.in_(('Rock', 'Pop', 'Hip-hop/Rap', 'Jazz', 'Classical',
+            'Alternative','R&B/Soul', 'Dance/Electronic', 'Indie', 'Soundtrack',
+            'World', 'Metal', 'Singer/Songwriter', 'Country/Folk'))),
         )
 
     def validate_genre(self):
-        valid_genres = ('Rock', 'Pop', 'Hip-hop', 'Jazz', 'Classical', 'Alternative',
-         'R&B', 'Soul', 'Dance', 'Electronic', 'Indie', 'Soundtrack', 'World', 'Rap', 'Punk',
-          'Metal', 'Singer/Songwriter', 'Country/Western', 'Folk', 'K-Pop')
+        valid_genres = ('Rock', 'Pop', 'Hip-hop/Rap', 'Jazz', 'Classical',
+            'Alternative','R&B/Soul', 'Dance/Electronic', 'Indie', 'Soundtrack',
+            'World', 'Metal', 'Singer/Songwriter', 'Country/Folk')
         if self.genre not in valid_genres:
             raise ValueError('Invalid genre')
 
