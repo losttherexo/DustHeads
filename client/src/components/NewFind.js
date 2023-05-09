@@ -51,7 +51,7 @@ function NewFind(){
                     image: values.image || record.image
                 }
                 dispatch(addCopy(updatedValues))
-                dispatch(addCopyToUser(updatedValues))
+                // dispatch(addCopyToUser(updatedValues))
                 resetForm()
                 navigate('/home')
             }

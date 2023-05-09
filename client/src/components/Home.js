@@ -14,7 +14,7 @@ function Home(){
   const newFindCards = sortedCopies.map((c) => (
         <NewFindCard key={c.id} {...c} />
     ))
-      
+
     return(
         <div className='flex w-full'>
             <div className='flex-col basis-[20%]'>

@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { fetchCopies, updateCopy, deleteCopy } from '../reducers/copySlice'
 import { useNavigate } from 'react-router-dom'
+import { removeCopyFromUser } from '../reducers/userSlice'
 
 function NewFindCard({id, record, dusthead, dusthead_id, description }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -42,6 +43,7 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
 
   const handleDelete = () => {
     dispatch(deleteCopy(id))
+    dispatch(removeCopyFromUser(id))
     navigate('/home')
   }
 

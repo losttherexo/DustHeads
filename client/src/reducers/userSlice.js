@@ -93,10 +93,10 @@ export const deleteUser = (id) => {
     }
 }
 
-export const addCopyToUser = (copy) => {
+export const removeCopyFromUser = (copyId) => {
     return {
-      type: 'user/addCopy',
-      payload: copy
+        type:'user/removeCopy',
+        payload: copyId
     }
 }
 
@@ -109,6 +109,12 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 copies: [action.payload, ...state.copies]
               }
-        default: return state
+        case 'user/removeCopy':
+            return {
+                ...state,
+                copies: state.copies.filter(copy => copy.id !== action.payload)
+            }
+        default:
+            return state
     }
 }
