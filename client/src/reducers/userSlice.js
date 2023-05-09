@@ -93,10 +93,22 @@ export const deleteUser = (id) => {
     }
 }
 
+export const addCopyToUser = (copy) => {
+    return {
+      type: 'user/addCopy',
+      payload: copy
+    }
+}
+
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case 'user/set':
             return action.payload
+        case 'user/addCopy':
+            return {
+                ...state,
+                copies: [action.payload, ...state.copies]
+              }
         default: return state
     }
 }
