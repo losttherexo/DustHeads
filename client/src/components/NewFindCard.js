@@ -43,7 +43,6 @@ function NewFindCard({id, record, dusthead, dusthead_id, description }) {
 
   const handleDelete = () => {
     dispatch(deleteCopy(id))
-    dispatch(removeCopyFromUser(id))
     navigate('/home')
   }
 

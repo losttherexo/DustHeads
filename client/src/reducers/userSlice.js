@@ -93,13 +93,6 @@ export const deleteUser = (id) => {
     }
 }
 
-export const removeCopyFromUser = (copyId) => {
-    return {
-        type:'user/removeCopy',
-        payload: copyId
-    }
-}
-
 export const userReducer = (state = initialState, action) => {
     switch(action.type){
         case 'user/set':

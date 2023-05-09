@@ -53,8 +53,10 @@ export const deleteCopy = (id) => {
             method: 'DELETE'
         })
         dispatch({type: 'copies/remove', payload: id})
+        dispatch({type:'user/removeCopy', payload: id})
     }
 }
+
 
 export const copyReducer = (state = initialState, action) => {
     switch(action.type){
