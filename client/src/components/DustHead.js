@@ -6,6 +6,7 @@ import Recommend from "./Recommend"
 import SearchBar from "./SearchBar"
 
 
+
 function DustHead({id}) {
     const navigate = useNavigate()
     const dh = useSelector(s => s.dustheads)
@@ -14,12 +15,11 @@ function DustHead({id}) {
 
     const editProfile = () => {
         navigate('/edit-account')
-    };
+    }
 
     const copyCards = user && (user === dusthead)
     ? user.copies.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((c) => <CopyCard key={c.id} {...c}/>)
-    : dusthead.copies.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((c) => <CopyCard key={c.id} {...c}/>);
-
+    : dusthead.copies.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((c) => <CopyCard key={c.id} {...c}/>)
 
    return(
         <div className='flex'>
