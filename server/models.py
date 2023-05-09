@@ -40,7 +40,7 @@ class DustHead(db.Model, SerializerMixin):
 class Record(db.Model, SerializerMixin):
     __tablename__ = 'records'
 
-    serialize_rules = ('-copies',)
+    serialize_rules = ('-copies.record', '-copies.record_id', '-copies.dusthead', '-copies.dusthead_id',)
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)

@@ -8,6 +8,10 @@ function Records() {
     
     const records = useSelector(s => s.records)
 
+    console.log(records)
+
+    records.sort((a, b) => b.copies.length - a.copies.length)
+
     const recordCards = records.map(r => <RecordCard key={r.id} {...r}/>)
 
     return(

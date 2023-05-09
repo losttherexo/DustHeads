@@ -19,13 +19,16 @@ export const fetchRecords = () => {
 export const recordsReducer = (state = initialState, action) => {
     switch(action.type){
         case 'records/set':
-            /* assumes action.payload is an array of objects */
             return action.payload
         case 'records/add':
-            /* assumes action.payload is an object */
             return [...state, action.payload]
+        case 'records/addCopy':
+            return state.map(r => {
+                if(r.id === action.payload.record_id) {
+                    return {...r, copies: [...r.copies, action.payload]}
+                } else return r
+            })
         case 'records/remove':
-            /* assumes action.payload is an integer of a doomed ID */
             return state.filter(rObj => rObj.id !== action.payload)
         default: return state
     }

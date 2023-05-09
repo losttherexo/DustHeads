@@ -12,6 +12,7 @@ export const addCopy = copy => {
                 r.json().then(copy => {
                     dispatch({type: 'copies/add', payload:copy})
                     dispatch({type: 'user/addCopy', payload:copy})
+                    dispatch({type: 'records/addCopy', payload:copy})
                 })
             }else{
                 console.log('something went wrong')
