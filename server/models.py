@@ -8,7 +8,7 @@ from config import db, bcrypt
 class DustHead(db.Model, SerializerMixin):
     __tablename__ = 'dustheads'
 
-    serialize_rules = ('-copies.dusthead', '-comments.dusthead')
+    serialize_rules = ('-copies.dusthead', '-comments.dusthead', '-_password_hash',)
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
@@ -77,6 +77,7 @@ class Copy(db.Model, SerializerMixin):
     serialize_rules = (
         '-dusthead.first_name',
         '-dusthead.last_name',
+        '-dusthead._password_hash',
         '-dusthead.id',
         '-dusthead.bio',
         '-record.genre',
