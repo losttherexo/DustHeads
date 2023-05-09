@@ -10,15 +10,12 @@ import SearchBar from "./SearchBar"
 function DustHead({id}) {
     const navigate = useNavigate()
     const dh = useSelector(s => s.dustheads)
-    const copies = useSelector(s=>s.copies)
     const user = useSelector(s => s.user)
     const dusthead = dh.find((d) => d.id === id)
 
     const editProfile = () => {
         navigate('/edit-account')
     }
-    console.log(copies)
-    console.log(user)
 
     const copyCards = user && (user.id === dusthead.id)
     ? user.copies.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((c) => <CopyCard key={c.id} {...c}/>)

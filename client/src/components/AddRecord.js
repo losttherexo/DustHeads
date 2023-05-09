@@ -61,6 +61,7 @@ function AddRecord(){
                             description:values.description
                         }
                         dispatch(addCopy(copyObj))
+                        navigate('/home')
                     })
                 }
             })
