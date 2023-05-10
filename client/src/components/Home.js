@@ -18,10 +18,10 @@ function Home(){
 
     return(
         <div className='flex w-full'>
-            <div className='flex-col basis-[20%]'>
+            <div className='flex-col basis-[10%] md:basis-[20%]'>
                     <NavBar/>
             </div>
-            <div className='flex-col justify-center mx-6 basis-[55%]'>
+            <div className='flex-col justify-center mx-6 basis-[80%] md:basis-[55%]'>
                 <div className="h-36 border-b flex items-center justify-center overflow-hidden relative">
                     <Marquee autoFill={true} style={{ position: "absolute"}}>
                         <p className='text-6xl text-gray-300'>yuhhhhhh</p>
@@ -31,7 +31,7 @@ function Home(){
                     {newFindCards}
                 </div>
             </div>
-            <div className='flex-col basis-[25%]'>
+            <div className='flex-col basis-[10%] md:basis-[25%]'>
                 <SearchBar/>
                 {/* <Recommend/> */}
             </div>

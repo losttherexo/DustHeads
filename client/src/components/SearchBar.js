@@ -40,8 +40,8 @@ function SearchBar() {
   }
 
   return (
-    <div className='border-l h-full min-h-screen'>
-      <div className='hidden md:flex border-b py-4 justify-center'>
+    <div className='hidden md:flex border-l h-full min-h-screen'>
+      <div className='border-b py-4 justify-center'>
         <input
           type='text'
           placeholder='Search'
