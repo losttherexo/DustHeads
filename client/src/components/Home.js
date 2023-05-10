@@ -3,6 +3,7 @@ import Recommend from "./Recommend"
 import { useSelector } from "react-redux"
 import SearchBar from "./SearchBar"
 import NewFindCard from "./NewFindCard"
+import Marquee from "react-fast-marquee";
 
 function Home(){
     const copies = useSelector(s => s.copies)
@@ -21,10 +22,10 @@ function Home(){
                     <NavBar/>
             </div>
             <div className='flex-col justify-center mx-6 basis-[55%]'>
-                <div className='h-36 border-b flex items-center justify-center'>
-                    <h1 className='text-3xl'>
-                        maybe an animation or something fun
-                    </h1>
+                <div className="h-36 border-b flex items-center justify-center overflow-hidden relative">
+                    <Marquee autoFill={true} style={{ position: "absolute"}}>
+                        <p className='text-6xl text-gray-300'>yuhhhhhh</p>
+                    </Marquee>
                 </div>
                 <div className='py-6'>
                     {newFindCards}
