@@ -40,13 +40,13 @@ function SearchBar() {
   }
 
   return (
-    <div className='hidden md:flex border-l h-full min-h-screen'>
-      <div className='border-b py-4 justify-center'>
+    <div className='hidden md:flex flex-col border-l h-full min-h-screen'>
+      <div className='flex border-b py-4 justify-center'>
         <input
           type='text'
           placeholder='Search'
           onChange={handleChange}
-          className='mx-2 rounded-lg'
+          className='rounded-lg px-2'
         />
       </div>
       <div className='flex flex-col my-2 mx-4'>{resultCards}</div>
