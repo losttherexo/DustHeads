@@ -25,12 +25,12 @@ function SearchBar() {
 
     resultCards = [
       ...filteredDustheads.map(dh => (
-        <div className='text-gray-300 border rounded-lg py-2 my-1'>
+        <div key={dh.id} className='text-gray-300 border rounded-lg py-2 my-1'>
           <button onClick={()=>navigate(`/${dh.username}`)} className='mx-2'>{dh.username}</button>
         </div>
       )),
       ...filteredRecords.map(r => (
-        <div className='text-gray-300 border rounded-lg py-2 my-1'>
+        <div key={r.id} className='text-gray-300 border rounded-lg py-2 my-1'>
           <button onClick={()=>console.log('maybe show comments')} className='mx-2 text-left'>
             {r.title} by {r.artist}
           </button>
