@@ -44,6 +44,7 @@ export const signupUser = (values) => {
             if(r.ok){
                 r.json().then(user => {
                     dispatch({type: 'user/set', payload:user})
+                    dispatch({type: 'dustheads/add', payload:user})
                 })
             }else{
                 dispatch({type: 'user/set', payload: null})
