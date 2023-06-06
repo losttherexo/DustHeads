@@ -85,12 +85,14 @@ export const updateUser = (values) => {
     }
 }
 
-export const deleteUser = (id) => {
+export const deleteUser = (user) => {
     return function(dispatch){
-        fetch(`/dustheads/${id}`, {
+        fetch(`/dustheads/${user.id}`, {
             method: 'DELETE'
         })
-        dispatch({type: 'user/set', payload: null})
+        .then(() => {
+            dispatch({ type: 'user/set', payload: null });
+          })
     }
 }
 

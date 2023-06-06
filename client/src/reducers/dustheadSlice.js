@@ -14,6 +14,10 @@ export const fetchDustHeads = () => {
     }
 }
 
+export const deleteDustHead = doomedDustHead => {
+    return {type:'dustheads/remove', payload: doomedDustHead}
+}
+
 export const dustheadReducer = (state = initialState, action) => {
     switch(action.type){
         case 'dustheads/set':
@@ -21,7 +25,7 @@ export const dustheadReducer = (state = initialState, action) => {
         case 'dustheads/add':
             return [...state, action.payload]
         case 'dustheads/remove':
-            return state.filter(dhObj => dhObj.id !== action.payload)
+            return state.filter(dhObj => dhObj !== action.payload)
         default: return state
     }
 }

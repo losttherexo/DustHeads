@@ -7,6 +7,7 @@ import { deleteUser, updateUser, fetchUser } from "../reducers/userSlice"
 import * as yup from 'yup'
 import { useState } from "react"
 import SearchBar from "./SearchBar"
+import { deleteDustHead } from "../reducers/dustheadSlice"
 
 function EditProfile() {
     const [isOpen, setIsOpen] = useState(false);
@@ -53,9 +54,10 @@ function EditProfile() {
         }
     })
 
-    const handleDelete = (id) => {
-        dispatch(deleteUser(id))
+    const handleDelete = (user) => {
+        dispatch(deleteUser(user))
         dispatch(fetchUser())
+        dispatch(deleteDustHead(user))
         navigate('/')
     }
 
@@ -90,7 +92,7 @@ function EditProfile() {
                     <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-50 flex justify-center items-center text-black">
                         <div className='rounded py-8 px-16 bg-slate-900 flex flex-col self-center text-center text-gray-300'>
                             <h1 className='py-2 font-bold text-lg'>Are you sure?</h1>
-                            <button onClick={() => handleDelete(user.id)} className='py-2 bg-red-700 rounded-md hover:bg-red-800'>Yes I'm Sure</button> 
+                            <button onClick={() => handleDelete(user)} className='py-2 bg-red-700 rounded-md hover:bg-red-800'>Yes I'm Sure</button> 
                             <button onClick={toggleModal} className='py-2 mt-4 bg-slate-500 rounded-md hover:bg-gray-800'>Nevermind</button> 
                         </div>
                     </div>
