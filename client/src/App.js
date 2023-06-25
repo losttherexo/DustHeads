@@ -12,10 +12,10 @@ import EditProfile from './components/EditProfile';
 import NewFind from './components/NewFind';
 import { fetchCopies } from './reducers/copySlice';
 import AddRecord from './components/AddRecord';
+import { fetchComments } from './reducers/commentSlice';
 
 function App() {
   const dispatch = useDispatch()
-
   const dustheads = useSelector(s => s.dustheads)
 
   useEffect(() => {
@@ -23,6 +23,7 @@ function App() {
     dispatch(fetchDustHeads())
     dispatch(fetchRecords())
     dispatch(fetchCopies())
+    dispatch(fetchComments())
   },[]) 
 
   return (
