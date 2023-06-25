@@ -30,7 +30,7 @@ function DustHead({id}) {
                 <div className='flex flex-col-reverse h-36 border-b'>
                     <div className='flex justify-between h-[35%]'>
                         <span className='flex items-center'>
-                            {dusthead.bio}
+                            {user.id == dusthead.id? user.bio : dusthead.bio}
                         </span>
                         {user&& dusthead.id === user.id && (
                             <button onClick={editProfile} className='my-2 py-1 px-4 font-bold bg-slate-500 hover:bg-black rounded-3xl'>Edit Profile</button>
