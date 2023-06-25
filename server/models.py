@@ -104,10 +104,7 @@ class Comment(db.Model, SerializerMixin):
 
     serialize_rules = (
         '-copy',
-        '-dusthead.bio',
-        '-dusthead.first_name',
-        '-dusthead.last_name',
-        '-dusthead.id'
+        '-dusthead',
     )
 
     id = db.Column(db.Integer, primary_key=True)
